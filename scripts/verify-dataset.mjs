@@ -32,9 +32,9 @@ if (!Array.isArray(questions)) {
   process.exit(1);
 }
 
-// 1. Total count is strictly 100
-if (questions.length !== 100) {
-  errors.push(`Expected strictly 100 questions, found ${questions.length}.`);
+// 1. Total count is strictly 500
+if (questions.length !== 500) {
+  errors.push(`Expected strictly 500 questions, found ${questions.length}.`);
 }
 
 const levelCounts = new Map();
@@ -125,11 +125,11 @@ questions.forEach((q, idx) => {
   }
 });
 
-// 2. Every level 1..10 has strictly 10 questions
+// 2. Every level 1..10 has strictly 50 questions
 for (let lvl = 1; lvl <= 10; lvl++) {
   const count = levelCounts.get(lvl) || 0;
-  if (count !== 10) {
-    errors.push(`Level ${lvl}: Expected strictly 10 questions, found ${count}.`);
+  if (count !== 50) {
+    errors.push(`Level ${lvl}: Expected strictly 50 questions, found ${count}.`);
   }
 }
 
@@ -143,7 +143,7 @@ if (errors.length > 0) {
 
 console.log('DATASET VERIFICATION PASSED:');
 console.log(`  - Total questions: ${questions.length}`);
-console.log(`  - Unique IDs: ${seenIds.size} (q-001..q-100)`);
+console.log(`  - Unique IDs: ${seenIds.size} (q-001..q-500)`);
 console.log(`  - Unique normalized prompts: ${seenTexts.size}`);
 console.log(
   `  - Level distribution: ${Array.from(levelCounts.entries())
