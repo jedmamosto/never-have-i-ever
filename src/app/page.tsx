@@ -9,6 +9,7 @@ import { IntensitySlider } from '@/components/controls/IntensitySlider';
 import { CustomCardModal } from '@/components/modals/CustomCardModal';
 import { ArrowLeftIcon, ArrowRightIcon, PlusIcon } from '@/components/card/Icons';
 import type { QuestionCard } from '@/types/game';
+import { trackGameStart, trackCustomCardCreated } from '@/lib/analytics';
 
 export default function HomePage() {
   const [isPlaying, setIsPlaying] = useState(false);
@@ -32,8 +33,21 @@ export default function HomePage() {
 
   const handleAddCustomCard = (input: NewCustomCardInput) => {
     const created = addCustomCard(input);
+    trackCustomCardCreated({
+      level: created.level,
+      category: created.category,
+    });
     injectAndFocusCard(created);
     setIsCustomModalOpen(false);
+  };
+
+  const handleStartGame = () => {
+    trackGameStart({
+      totalCards,
+      intensityMin: intensityRange.min,
+      intensityMax: intensityRange.max,
+    });
+    setIsPlaying(true);
   };
 
   const handleSelectCustomCard = (card: QuestionCard) => {
@@ -111,7 +125,7 @@ export default function HomePage() {
             <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 pt-1">
               <button
                 type="button"
-                onClick={() => setIsPlaying(true)}
+                onClick={handleStartGame}
                 className="flex-1 py-3.5 px-5 rounded-control bg-primary-container border-[2.5px] border-on-surface shadow-brutal font-display font-bold text-title text-on-surface inline-flex items-center justify-center gap-2 brutal-interactive focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-on-surface"
               >
                 <span>Start Game • {totalCards} Cards</span>

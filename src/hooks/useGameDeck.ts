@@ -5,6 +5,12 @@ import type { IntensityLevel, IntensityRange, QuestionCard, TierThemeTokens } fr
 import { INITIAL_QUESTIONS } from '../data/questions';
 import { getThemeForLevel } from '../lib/theme';
 import { createNonRepeatingOrder } from '../lib/shuffle';
+import {
+  trackCardNext,
+  trackCardPrev,
+  trackIntensityChange,
+  trackDeckShuffled,
+} from '../lib/analytics';
 
 function filterQuestionsByRange(
   allCards: QuestionCard[],
@@ -116,6 +122,7 @@ export function useGameDeck(customCards: QuestionCard[], isModalOpen = false) {
     (min: IntensityLevel, max: IntensityLevel) => {
       const actualMin = Math.min(min, max) as IntensityLevel;
       const actualMax = Math.max(min, max) as IntensityLevel;
+      trackIntensityChange(actualMin, actualMax);
       const nextPool = filterQuestionsByRange(allCards, actualMin, actualMax);
       const nextIds = nextPool.map((q) => q.id);
       setIntensityRangeState({ min: actualMin, max: actualMax });
@@ -128,6 +135,14 @@ export function useGameDeck(customCards: QuestionCard[], isModalOpen = false) {
 
   const nextCard = useCallback(() => {
     if (deckOrder.length === 0) return;
+    if (currentCard) {
+      trackCardNext({
+        cardId: currentCard.id,
+        level: currentCard.level,
+        category: currentCard.category,
+        isCustom: Boolean(currentCard.isCustom),
+      });
+    }
     setDirection('next');
 
     if (safeIndex + 1 < deckOrder.length) {
@@ -142,17 +157,25 @@ export function useGameDeck(customCards: QuestionCard[], isModalOpen = false) {
       setDeckOrder(reshuffled);
       setCurrentIndex(0);
     }
-  }, [deckOrder, safeIndex, filteredPool]);
+  }, [deckOrder, safeIndex, filteredPool, currentCard]);
 
   const prevCard = useCallback(() => {
     if (deckOrder.length === 0) return;
+    if (currentCard) {
+      trackCardPrev({
+        cardId: currentCard.id,
+        level: currentCard.level,
+        category: currentCard.category,
+      });
+    }
     setDirection('prev');
     setCurrentIndex(safeIndex > 0 ? safeIndex - 1 : deckOrder.length - 1);
-  }, [deckOrder.length, safeIndex]);
+  }, [deckOrder.length, safeIndex, currentCard]);
 
   const shuffleActiveDeck = useCallback(() => {
     const poolIds = filteredPool.map((q) => q.id);
     if (poolIds.length === 0) return;
+    trackDeckShuffled(poolIds.length);
     setDirection('next');
     setDeckOrder(createNonRepeatingOrder(poolIds, currentCard?.id));
     setCurrentIndex(0);

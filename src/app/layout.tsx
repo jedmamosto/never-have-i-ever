@@ -5,6 +5,8 @@ import {
   Space_Mono,
 } from "next/font/google";
 import "./globals.css";
+import { Analytics } from "@vercel/analytics/react";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 
 const spaceGrotesk = Space_Grotesk({
   subsets: ["latin"],
@@ -51,6 +53,8 @@ export default function RootLayout({
     >
       <body className="min-h-dvh bg-surface bg-dot-grid font-sans text-on-surface antialiased selection:bg-secondary-container selection:text-on-surface">
         {children}
+        <Analytics />
+        <SpeedInsights />
       </body>
     </html>
   );
