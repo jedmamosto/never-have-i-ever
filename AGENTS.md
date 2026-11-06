@@ -37,6 +37,7 @@ Prevents breaking game state mechanics, UI card layout bounds, and dataset integ
 - Cultural Framework & Touchstones: inspect `.agents/docs/research/nhie-filipino-cultural-framework.md`
 - Question Research Dossier: inspect `.agents/docs/research/nhie-question-framework-dossier.md`
 - Workspace Modular Rules: inspect `.agents/rules/question-governance.md`
+- SEO & Copy Governance: inspect `.agents/rules/seo-copy-governance.md`
 
 ## Execution Boundaries
 
@@ -56,3 +57,7 @@ Prevents breaking game state mechanics, UI card layout bounds, and dataset integ
 3. **Verification Before Declaring Victory**:
    - DO NOT claim question changes are complete without testing.
    - ALWAYS run `node scripts/verify-dataset.mjs` and `npm run build`.
+
+4. **Windows Next.js Build Process Locking**:
+   - DO NOT run `npm run build` while a background server (`next dev` or `next start`) holds file locks on `.next`.
+   - ALWAYS terminate locking Node processes (`Stop-Process -Id <pid> -Force`) and clean `.next` (`Remove-Item -Recurse -Force .next`) if encountering `PageNotFoundError` or `ENOENT` during static page collection.
