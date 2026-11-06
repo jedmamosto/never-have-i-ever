@@ -84,12 +84,21 @@ export default function HomePage() {
     setIsCustomModalOpen(false);
   };
 
-  const handleStartGame = () => {
-    trackGameStart({
-      totalCards,
-      intensityMin: intensityRange.min,
-      intensityMax: intensityRange.max,
-    });
+  const handleStartGame = (rangeOverride?: { min: number; max: number }) => {
+    if (rangeOverride) {
+      setIntensityRange(rangeOverride.min as any, rangeOverride.max as any);
+      trackGameStart({
+        totalCards,
+        intensityMin: rangeOverride.min,
+        intensityMax: rangeOverride.max,
+      });
+    } else {
+      trackGameStart({
+        totalCards,
+        intensityMin: intensityRange.min,
+        intensityMax: intensityRange.max,
+      });
+    }
     setIsPlaying(true);
   };
 
@@ -292,103 +301,190 @@ export default function HomePage() {
           {/* Hero Game Launcher Card */}
           <section
             aria-label="Main Menu"
-            className="max-w-xl w-full bg-surface-container-lowest border-[3px] border-on-surface rounded-card shadow-brutal-card p-4 sm:p-8 flex flex-col gap-4 sm:gap-6"
+            className="max-w-xl w-full bg-surface-container-lowest border-[3px] border-on-surface rounded-card shadow-brutal-card p-4 sm:p-7 flex flex-col gap-4 sm:gap-5"
           >
-            {/* Title & Keyword-Aligned Subtitle */}
-            <div className="space-y-2">
-              <span className="font-mono text-label-code uppercase tracking-wider text-primary font-bold block">
-                {gameMode === 'most-likely-to'
-                  ? 'TAGAY TA // 100 CALIBRATED PROMPTS'
-                  : 'TAGAY TA // 500 CALIBRATED PROMPTS'}
-              </span>
+            {/* Inline 2-Mode Segmented Switcher */}
+            <div
+              role="tablist"
+              aria-label="Game Mode Switcher"
+              className="grid grid-cols-2 p-1 rounded-control bg-surface border-2 border-on-surface gap-1"
+            >
+              <button
+                type="button"
+                role="tab"
+                aria-selected={gameMode === 'never-have-i-ever'}
+                onClick={() => setGameMode('never-have-i-ever')}
+                className={`py-2 px-2.5 rounded-token font-mono text-xs font-bold uppercase transition-all duration-100 flex items-center justify-center gap-1.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-on-surface ${
+                  gameMode === 'never-have-i-ever'
+                    ? 'bg-secondary-container text-on-surface border-2 border-on-surface shadow-brutal-sm -translate-y-[1px]'
+                    : 'bg-transparent text-on-surface-variant hover:text-on-surface'
+                }`}
+              >
+                <span>🍺 Never Have I Ever</span>
+                <span className="font-mono text-[10px] opacity-75 hidden sm:inline">(500)</span>
+              </button>
+
+              <button
+                type="button"
+                role="tab"
+                aria-selected={gameMode === 'most-likely-to'}
+                onClick={() => setGameMode('most-likely-to')}
+                className={`py-2 px-2.5 rounded-token font-mono text-xs font-bold uppercase transition-all duration-100 flex items-center justify-center gap-1.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-on-surface ${
+                  gameMode === 'most-likely-to'
+                    ? 'bg-primary-container text-on-surface border-2 border-on-surface shadow-brutal-sm -translate-y-[1px]'
+                    : 'bg-transparent text-on-surface-variant hover:text-on-surface'
+                }`}
+              >
+                <span>👉 Most Likely To</span>
+                <span className="font-mono text-[10px] opacity-75 hidden sm:inline">(100)</span>
+              </button>
+            </div>
+
+            {/* Title & Lean Value Proposition */}
+            <div className="space-y-1.5">
               <h1 className="font-display font-bold text-headline-md sm:text-display-sm tracking-[-0.02em] text-on-surface leading-tight">
                 {gameMode === 'most-likely-to'
-                  ? 'Tagay Ta: Most Likely To Party Deck'
-                  : 'Tagay Ta: Pinoy Barkada Party Deck & Drinking Game'}
+                  ? 'Tagay Ta: 100 Pinoy Most Likely To Cards'
+                  : 'Tagay Ta: 500 Pinoy Inuman Cards on One Phone'}
               </h1>
               <p className="font-sans text-body-md text-on-surface-variant leading-relaxed">
                 {gameMode === 'most-likely-to'
-                  ? 'The Pinoy drinking game for your barkada inuman. Count down 3-2-1, point at who is most likely, and take a drink!'
-                  : 'The Pinoy drinking game for your barkada inuman. Pick an intensity, pass the phone around, and drink if guilty.'}
+                  ? 'Read aloud. Count down 3-2-1 and point. Most votes drinks!'
+                  : 'Pick your spice level. Pass one phone around. Drink if guilty.'}
               </p>
             </div>
 
-            {/* Embedded 1-10 Range Selector */}
-            <div className="p-4 rounded-control bg-surface border-2 border-on-surface">
+            {/* Live Sample Card Micro-Demo ("Show, Don't Tell") */}
+            {currentCard && (
+              <div
+                aria-label="Live card sample"
+                className="p-3.5 sm:p-4 rounded-control bg-surface border-2 border-on-surface shadow-brutal-sm flex flex-col gap-2.5"
+              >
+                <div className="flex items-center justify-between gap-2">
+                  <div className="flex items-center gap-1.5">
+                    <span
+                      className={`${theme.badgeBg} ${theme.badgeText} border border-on-surface shadow-brutal-none rounded-full px-2.5 py-0.5 font-mono text-[10px] sm:text-label-code uppercase font-bold`}
+                    >
+                      LEVEL {currentCard.level}
+                    </span>
+                    <span className="font-mono text-[11px] uppercase tracking-wider font-bold text-on-surface-variant/80">
+                      Live Sample
+                    </span>
+                  </div>
+
+                  <button
+                    type="button"
+                    onClick={nextCard}
+                    aria-label="Show another sample card"
+                    className="min-h-[36px] px-2.5 py-1 rounded-full bg-surface-container-high hover:bg-surface-container-highest text-on-surface border border-on-surface font-mono text-[11px] font-bold inline-flex items-center gap-1 brutal-interactive focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-on-surface"
+                  >
+                    <span>Sample Another</span>
+                    <span aria-hidden="true">🎲</span>
+                  </button>
+                </div>
+
+                <div className="space-y-1">
+                  <span className="font-mono text-[10px] sm:text-[11px] uppercase tracking-wider font-bold text-primary block">
+                    {gameMode === 'most-likely-to' ? 'MOST LIKELY TO...' : 'NEVER HAVE I EVER...'}
+                  </span>
+                  <p className="font-display font-bold text-base sm:text-title text-on-surface leading-snug">
+                    {currentCard.text}
+                  </p>
+                </div>
+              </div>
+            )}
+
+            {/* Embedded 1-10 Range Selector (Compact, No Dual Range Sliders) */}
+            <div className="p-3.5 sm:p-4 rounded-control bg-surface border-2 border-on-surface">
               <IntensitySlider
                 range={intensityRange}
                 onChange={setIntensityRange}
+                showRangeInputs={false}
               />
             </div>
 
-            {/* Action Row */}
-            <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 pt-1">
+            {/* Primary Dominant AAA CTA & Trust Strip */}
+            <div className="space-y-2 pt-0.5">
               <button
                 type="button"
-                onClick={handleStartGame}
-                className="flex-1 py-3.5 px-5 min-h-[48px] rounded-control bg-primary-container border-[2.5px] border-on-surface shadow-brutal font-display font-bold text-title text-on-surface inline-flex items-center justify-center gap-2 brutal-interactive focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-on-surface"
+                onClick={() => handleStartGame()}
+                className="w-full py-3.5 px-5 min-h-[52px] rounded-control bg-secondary-container hover:bg-secondary-fixed border-[2.5px] border-on-surface shadow-brutal font-display font-bold text-title text-on-surface inline-flex items-center justify-center gap-2 brutal-interactive focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-on-surface"
               >
-                <span>Start Game • {totalCards} Cards</span>
+                <span>Deal My First Card • {totalCards} Cards</span>
                 <ArrowRightIcon className="w-5 h-5 shrink-0" />
               </button>
 
-              <button
-                type="button"
-                onClick={() => setIsCustomModalOpen(true)}
-                className="py-3.5 px-4 min-h-[48px] rounded-control bg-secondary-container border-[2.5px] border-on-surface shadow-brutal font-display font-bold text-body-md text-on-surface inline-flex items-center justify-center gap-1.5 whitespace-nowrap brutal-interactive focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-on-surface"
-              >
-                <PlusIcon className="w-4 h-4 shrink-0" />
-                <span>Custom Cards ({customCards.length})</span>
-              </button>
+              {/* Zero-Risk Reversal Microcopy */}
+              <div className="flex items-center justify-center gap-2 sm:gap-3 flex-wrap font-mono text-[11px] text-on-surface-variant font-medium">
+                <span>✓ 100% Free Forever</span>
+                <span>•</span>
+                <span>✓ No App or Login</span>
+                <span>•</span>
+                <span>✓ 2–20+ Players</span>
+              </div>
             </div>
 
-            {/* Quick Navigation & Share Bar */}
+            {/* Secondary Actions & Quick Jump Links */}
             <div className="pt-3 border-t border-on-surface/15 flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-2.5">
-              <nav aria-label="Game Guide Jump Links" className="flex flex-wrap items-center gap-1.5 sm:gap-2 font-mono text-xs">
+              <div className="flex items-center gap-2 flex-wrap">
+                <button
+                  type="button"
+                  onClick={() => setIsCustomModalOpen(true)}
+                  className="inline-flex items-center justify-center min-h-[44px] sm:min-h-[34px] px-3 py-1.5 rounded-full bg-surface border border-on-surface hover:bg-surface-container font-mono text-xs font-semibold text-on-surface transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-on-surface active:scale-95"
+                >
+                  <PlusIcon className="w-3.5 h-3.5 shrink-0 mr-1" />
+                  <span>Custom Cards ({customCards.length})</span>
+                </button>
+
+                <button
+                  type="button"
+                  onClick={handleShareGame}
+                  className="inline-flex items-center justify-center gap-1.5 min-h-[44px] sm:min-h-[34px] px-3.5 py-1.5 rounded-full bg-surface text-on-surface border border-on-surface font-mono text-xs font-semibold hover:bg-surface-container transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-on-surface active:scale-95"
+                  aria-label="Invite friends and share Tagay Ta"
+                >
+                  {copiedLink ? (
+                    <>
+                      <CheckIcon className="w-3.5 h-3.5 text-on-surface shrink-0" />
+                      <span>Link Copied! 🍻</span>
+                    </>
+                  ) : (
+                    <>
+                      <ShareIcon className="w-3.5 h-3.5 text-on-surface shrink-0" />
+                      <span>Invite Barkada</span>
+                    </>
+                  )}
+                </button>
+              </div>
+
+              <nav aria-label="Game Guide Jump Links" className="flex flex-wrap items-center gap-1.5 font-mono text-xs">
                 <a
                   href="#how-to-play"
-                  className="inline-flex items-center justify-center min-h-[38px] sm:min-h-[32px] px-3 py-1.5 rounded-full bg-surface border border-on-surface hover:bg-surface-container font-semibold transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-on-surface active:scale-95"
+                  className="inline-flex items-center justify-center min-h-[44px] sm:min-h-[32px] px-2.5 py-1 text-on-surface-variant hover:text-primary underline-offset-4 hover:underline transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-on-surface"
                 >
                   How to Play
                 </a>
+                <span className="text-on-surface-variant/40">•</span>
                 <a
                   href="#intensity-levels"
-                  className="inline-flex items-center justify-center min-h-[38px] sm:min-h-[32px] px-3 py-1.5 rounded-full bg-surface border border-on-surface hover:bg-surface-container font-semibold transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-on-surface active:scale-95"
+                  className="inline-flex items-center justify-center min-h-[44px] sm:min-h-[32px] px-2.5 py-1 text-on-surface-variant hover:text-primary underline-offset-4 hover:underline transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-on-surface"
                 >
                   10 Levels
                 </a>
+                <span className="text-on-surface-variant/40">•</span>
                 <a
                   href="#inuman-rules"
-                  className="inline-flex items-center justify-center min-h-[38px] sm:min-h-[32px] px-3 py-1.5 rounded-full bg-surface border border-on-surface hover:bg-surface-container font-semibold transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-on-surface active:scale-95"
+                  className="inline-flex items-center justify-center min-h-[44px] sm:min-h-[32px] px-2.5 py-1 text-on-surface-variant hover:text-primary underline-offset-4 hover:underline transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-on-surface"
                 >
-                  House Rules
+                  Rules
                 </a>
+                <span className="text-on-surface-variant/40">•</span>
                 <a
                   href="#faq"
-                  className="inline-flex items-center justify-center min-h-[38px] sm:min-h-[32px] px-3 py-1.5 rounded-full bg-surface border border-on-surface hover:bg-surface-container font-semibold transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-on-surface active:scale-95"
+                  className="inline-flex items-center justify-center min-h-[44px] sm:min-h-[32px] px-2.5 py-1 text-on-surface-variant hover:text-primary underline-offset-4 hover:underline transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-on-surface"
                 >
                   FAQs
                 </a>
               </nav>
-
-              <button
-                type="button"
-                onClick={handleShareGame}
-                className="w-full sm:w-auto inline-flex items-center justify-center gap-1.5 min-h-[44px] sm:min-h-[34px] px-3.5 py-2 rounded-full bg-primary-container text-on-surface border border-on-surface font-mono text-xs font-bold brutal-interactive shadow-brutal-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-on-surface active:scale-95"
-                aria-label="Invite friends and share Tagay Ta"
-              >
-                {copiedLink ? (
-                  <>
-                    <CheckIcon className="w-3.5 h-3.5 text-on-surface shrink-0" />
-                    <span>Link Copied! 🍻</span>
-                  </>
-                ) : (
-                  <>
-                    <ShareIcon className="w-3.5 h-3.5 text-on-surface shrink-0" />
-                    <span>Invite Barkada</span>
-                  </>
-                )}
-              </button>
             </div>
           </section>
 
@@ -560,7 +656,7 @@ export default function HomePage() {
                 Not every inuman has the same energy. Both game decks scale across 10 intensity levels:
               </p>
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
-                <div className="p-3.5 sm:p-4 rounded-control bg-surface border border-on-surface space-y-2 flex flex-col justify-between">
+                <div className="p-3.5 sm:p-4 rounded-control bg-surface border border-on-surface space-y-3 flex flex-col justify-between">
                   <div className="space-y-1.5">
                     <div className="flex items-center gap-1.5 text-tertiary font-mono text-xs font-bold uppercase">
                       <ChillLeafIcon className="w-4 h-4 shrink-0" />
@@ -570,12 +666,23 @@ export default function HomePage() {
                       Icebreakers &amp; School Days
                     </strong>
                     <p className="font-sans text-xs text-on-surface-variant leading-relaxed">
-                      Campus bloopers, childhood memories, commute woes, and funny Pinoy habits. Safe for family, coworkers, or new friends.
+                      Campus bloopers, commute woes, and funny Pinoy habits. Safe for family or coworkers.
                     </p>
+                    <div className="p-2 rounded-token bg-surface-container-low border border-on-surface/20 font-mono text-[11px] text-on-surface-variant italic">
+                      &ldquo;Nakatulog sa jeep at lumagpas ng babaan.&rdquo;
+                    </div>
                   </div>
+                  <button
+                    type="button"
+                    onClick={() => handleStartGame({ min: 1, max: 3 })}
+                    className="w-full py-2 px-3 rounded-control bg-tertiary-fixed hover:bg-tertiary-fixed-dim text-on-tertiary-fixed border border-on-surface font-mono text-xs font-bold inline-flex items-center justify-center gap-1 brutal-interactive focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-on-surface min-h-[44px]"
+                  >
+                    <span>Play Chill (1–3)</span>
+                    <ArrowRightIcon className="w-3.5 h-3.5 shrink-0" />
+                  </button>
                 </div>
 
-                <div className="p-3.5 sm:p-4 rounded-control bg-surface border border-on-surface space-y-2 flex flex-col justify-between">
+                <div className="p-3.5 sm:p-4 rounded-control bg-surface border border-on-surface space-y-3 flex flex-col justify-between">
                   <div className="space-y-1.5">
                     <div className="flex items-center gap-1.5 text-primary font-mono text-xs font-bold uppercase">
                       <PartyGlassIcon className="w-4 h-4 shrink-0" />
@@ -585,12 +692,23 @@ export default function HomePage() {
                       Office Tea &amp; Situationships
                     </strong>
                     <p className="font-sans text-xs text-on-surface-variant leading-relaxed">
-                      Workplace confessions, secret crushes, messy group chats, and inuman memories. Great for close barkadas having beer and pulutan.
+                      Workplace confessions, secret crushes, and inuman memories. Great for close barkadas.
                     </p>
+                    <div className="p-2 rounded-token bg-surface-container-low border border-on-surface/20 font-mono text-[11px] text-on-surface-variant italic">
+                      &ldquo;Nag-mute sa meeting para uminom o kumain.&rdquo;
+                    </div>
                   </div>
+                  <button
+                    type="button"
+                    onClick={() => handleStartGame({ min: 4, max: 7 })}
+                    className="w-full py-2 px-3 rounded-control bg-secondary-container hover:bg-secondary-fixed text-on-secondary-fixed border border-on-surface font-mono text-xs font-bold inline-flex items-center justify-center gap-1 brutal-interactive focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-on-surface min-h-[44px]"
+                  >
+                    <span>Play Party (4–7)</span>
+                    <ArrowRightIcon className="w-3.5 h-3.5 shrink-0" />
+                  </button>
                 </div>
 
-                <div className="p-3.5 sm:p-4 rounded-control bg-surface border border-on-surface space-y-2 flex flex-col justify-between">
+                <div className="p-3.5 sm:p-4 rounded-control bg-surface border border-on-surface space-y-3 flex flex-col justify-between">
                   <div className="space-y-1.5">
                     <div className="flex items-center gap-1.5 text-secondary font-mono text-xs font-bold uppercase">
                       <SpicyFlameIcon className="w-4 h-4 shrink-0" />
@@ -600,9 +718,20 @@ export default function HomePage() {
                       Walwal &amp; Wild Truths
                     </strong>
                     <p className="font-sans text-xs text-on-surface-variant leading-relaxed">
-                      Wild party nights, secret exes, and unfiltered late-night confessions. Play only with friends you trust 100%.
+                      Wild party nights, secret exes, and unfiltered confessions. Play only with trusted friends.
                     </p>
+                    <div className="p-2 rounded-token bg-surface-container-low border border-on-surface/20 font-mono text-[11px] text-on-surface-variant italic">
+                      &ldquo;Nag-drunk dial ng ex nang hatinggabi.&rdquo;
+                    </div>
                   </div>
+                  <button
+                    type="button"
+                    onClick={() => handleStartGame({ min: 8, max: 10 })}
+                    className="w-full py-2 px-3 rounded-control bg-primary-container hover:bg-primary-fixed text-on-surface border border-on-surface font-mono text-xs font-bold inline-flex items-center justify-center gap-1 brutal-interactive focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-on-surface min-h-[44px]"
+                  >
+                    <span>Play Spicy (8–10)</span>
+                    <ArrowRightIcon className="w-3.5 h-3.5 shrink-0" />
+                  </button>
                 </div>
               </div>
             </article>
@@ -773,15 +902,50 @@ export default function HomePage() {
               </div>
             </article>
 
-            {/* Back to Top Link */}
-            <div className="text-center pt-2">
-              <a
-                href="#top"
-                className="inline-flex items-center justify-center min-h-[44px] gap-1.5 font-mono text-xs font-bold text-on-surface-variant hover:text-primary transition-colors underline-offset-4 hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-on-surface rounded-token px-3 py-2"
+            {/* Final Conversion CTA Stack (replaces plain back-to-top text link) */}
+            <section
+              aria-label="Start Game Final Call"
+              className="bg-surface-container-lowest border-[2.5px] border-on-surface rounded-card shadow-brutal p-4 sm:p-6 text-center space-y-3.5"
+            >
+              <div className="space-y-1">
+                <h2 className="font-display font-bold text-title sm:text-headline-md tracking-tight text-on-surface">
+                  Ready to start the tagay?
+                </h2>
+                <p className="font-sans text-xs sm:text-sm text-on-surface-variant">
+                  One phone. Two game decks. 600 calibrated Pinoy prompts.
+                </p>
+              </div>
+
+              <div className="flex items-center justify-center gap-2 sm:gap-3 flex-wrap font-mono text-[11px] text-on-surface-variant font-medium">
+                <span className="px-2 py-0.5 rounded-full bg-surface-container border border-on-surface/30">
+                  ⚡ Instant Play
+                </span>
+                <span className="px-2 py-0.5 rounded-full bg-surface-container border border-on-surface/30">
+                  🍺 100% Free
+                </span>
+                <span className="px-2 py-0.5 rounded-full bg-surface-container border border-on-surface/30">
+                  👥 2–20+ Players
+                </span>
+              </div>
+
+              <button
+                type="button"
+                onClick={() => handleStartGame()}
+                className="w-full py-3.5 px-5 min-h-[52px] rounded-control bg-secondary-container hover:bg-secondary-fixed border-[2.5px] border-on-surface shadow-brutal font-display font-bold text-title text-on-surface inline-flex items-center justify-center gap-2 brutal-interactive focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-on-surface"
               >
-                <span>↑ Back to Deck &amp; Start Playing</span>
-              </a>
-            </div>
+                <span>Deal My First Card • {totalCards} Cards</span>
+                <ArrowRightIcon className="w-5 h-5 shrink-0" />
+              </button>
+
+              <div>
+                <a
+                  href="#top"
+                  className="inline-flex items-center justify-center min-h-[44px] gap-1 font-mono text-xs font-bold text-on-surface-variant hover:text-primary transition-colors underline-offset-4 hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-on-surface rounded-token px-2 py-1"
+                >
+                  <span>↑ Back to Top</span>
+                </a>
+              </div>
+            </section>
           </div>
 
           {/* Footer Navigation & Credits */}

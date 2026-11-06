@@ -6,6 +6,7 @@ import type { IntensityLevel, IntensityRange } from '@/types/game';
 export interface IntensitySliderProps {
   range: IntensityRange;
   onChange: (min: IntensityLevel, max: IntensityLevel) => void;
+  showRangeInputs?: boolean;
 }
 
 const LEVELS: IntensityLevel[] = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
@@ -30,7 +31,11 @@ function getRangePillClasses(level: IntensityLevel, inRange: boolean): string {
   return 'bg-primary-container text-on-surface border-on-surface shadow-brutal-sm -translate-y-[1px] font-bold';
 }
 
-export function IntensitySlider({ range, onChange }: IntensitySliderProps) {
+export function IntensitySlider({
+  range,
+  onChange,
+  showRangeInputs = false,
+}: IntensitySliderProps) {
   const isFullRange = range.min === 1 && range.max === 10;
 
   const handlePillClick = (lvl: IntensityLevel) => {
@@ -93,7 +98,7 @@ export function IntensitySlider({ range, onChange }: IntensitySliderProps) {
               type="button"
               aria-pressed={isActive}
               onClick={() => onChange(preset.min, preset.max)}
-              className={`px-2.5 py-1.5 rounded-token border-2 font-mono text-xs font-bold tracking-tight transition-all duration-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-on-surface ${
+              className={`min-h-[44px] sm:min-h-[38px] px-2.5 py-1.5 rounded-token border-2 font-mono text-xs font-bold tracking-tight transition-all duration-100 flex items-center justify-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-on-surface ${
                 isActive
                   ? 'bg-on-surface text-surface border-on-surface shadow-brutal-sm -translate-y-[1px]'
                   : 'bg-surface-container-low text-on-surface border-on-surface/50 hover:border-on-surface'
@@ -120,7 +125,7 @@ export function IntensitySlider({ range, onChange }: IntensitySliderProps) {
               onClick={() => handlePillClick(lvl)}
               aria-label={`Level ${lvl}`}
               aria-pressed={inRange}
-              className={`h-9 sm:h-10 rounded-token border-2 font-mono text-xs sm:text-label-counter flex items-center justify-center transition-all duration-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-on-surface active:translate-y-0 active:shadow-none ${getRangePillClasses(
+              className={`min-h-[44px] h-11 sm:h-10 rounded-token border-2 font-mono text-xs sm:text-label-counter flex items-center justify-center transition-all duration-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-on-surface active:translate-y-0 active:shadow-none ${getRangePillClasses(
                 lvl,
                 inRange
               )}`}
@@ -131,44 +136,46 @@ export function IntensitySlider({ range, onChange }: IntensitySliderProps) {
         })}
       </div>
 
-      {/* Dual Min / Max Range Sliders */}
-      <div className="grid grid-cols-2 gap-3 pt-0.5">
-        <label className="flex flex-col gap-1">
-          <div className="flex items-center justify-between font-mono text-[11px] font-bold uppercase text-on-surface-variant">
-            <span>Min Level</span>
-            <span className="text-on-surface">Lv. {range.min}</span>
-          </div>
-          <input
-            type="range"
-            min={1}
-            max={10}
-            step={1}
-            value={range.min}
-            onChange={handleMinChange}
-            aria-label="Minimum intensity level"
-            style={{ accentColor: '#7b9f80' }}
-            className="w-full h-2 rounded-full border-2 border-on-surface bg-surface-container-high appearance-none cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-on-surface"
-          />
-        </label>
+      {/* Optional Dual Min / Max Range Sliders */}
+      {showRangeInputs && (
+        <div className="grid grid-cols-2 gap-3 pt-0.5">
+          <label className="flex flex-col gap-1">
+            <div className="flex items-center justify-between font-mono text-[11px] font-bold uppercase text-on-surface-variant">
+              <span>Min Level</span>
+              <span className="text-on-surface">Lv. {range.min}</span>
+            </div>
+            <input
+              type="range"
+              min={1}
+              max={10}
+              step={1}
+              value={range.min}
+              onChange={handleMinChange}
+              aria-label="Minimum intensity level"
+              style={{ accentColor: '#7b9f80' }}
+              className="w-full h-2 rounded-full border-2 border-on-surface bg-surface-container-high appearance-none cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-on-surface"
+            />
+          </label>
 
-        <label className="flex flex-col gap-1">
-          <div className="flex items-center justify-between font-mono text-[11px] font-bold uppercase text-on-surface-variant">
-            <span>Max Level</span>
-            <span className="text-on-surface">Lv. {range.max}</span>
-          </div>
-          <input
-            type="range"
-            min={1}
-            max={10}
-            step={1}
-            value={range.max}
-            onChange={handleMaxChange}
-            aria-label="Maximum intensity level"
-            style={{ accentColor: '#e07a5f' }}
-            className="w-full h-2 rounded-full border-2 border-on-surface bg-surface-container-high appearance-none cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-on-surface"
-          />
-        </label>
-      </div>
+          <label className="flex flex-col gap-1">
+            <div className="flex items-center justify-between font-mono text-[11px] font-bold uppercase text-on-surface-variant">
+              <span>Max Level</span>
+              <span className="text-on-surface">Lv. {range.max}</span>
+            </div>
+            <input
+              type="range"
+              min={1}
+              max={10}
+              step={1}
+              value={range.max}
+              onChange={handleMaxChange}
+              aria-label="Maximum intensity level"
+              style={{ accentColor: '#e07a5f' }}
+              className="w-full h-2 rounded-full border-2 border-on-surface bg-surface-container-high appearance-none cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-on-surface"
+            />
+          </label>
+        </div>
+      )}
 
       {/* Subtle Configuration-Only Tier Legend */}
       <div
