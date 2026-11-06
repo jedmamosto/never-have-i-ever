@@ -61,3 +61,11 @@ Prevents breaking game state mechanics, UI card layout bounds, and dataset integ
 4. **Windows Next.js Build Process Locking**:
    - DO NOT run `npm run build` while a background server (`next dev` or `next start`) holds file locks on `.next`.
    - ALWAYS terminate locking Node processes (`Stop-Process -Id <pid> -Force`) and clean `.next` (`Remove-Item -Recurse -Force .next`) if encountering `PageNotFoundError` or `ENOENT` during static page collection.
+
+5. **YAGNI on Tabletop House Rules**:
+   - DO NOT build speculative configuration toggles, custom rule builders, or complex scoring engines for house rules.
+   - ALWAYS maintain house rules as lightweight, declarative social guidelines on the landing page.
+
+6. **Kinetic Table Action Prominence**:
+   - DO NOT render primary tabletop action triggers (e.g. countdown buzzers, reveal triggers) as flat, skinny utility pills (< 48px).
+   - ALWAYS give kinetic table actions tall, tactile footprints (min-h-[76px]+, 3px borders, distinct visual hierarchy) so they function as prominent party centerpieces.

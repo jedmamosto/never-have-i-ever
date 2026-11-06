@@ -2,7 +2,7 @@
 name: seo-copy-governance
 description: Enforces barkada vocabulary cadence, anti-AI-slop standards, mobile touch ergonomics, and tabletop gameplay isolation.
 always_on: false
-version: 1.0.0
+version: 1.1.0
 ---
 
 # SEO & Copywriting Governance
@@ -42,3 +42,8 @@ Prevents generic AI marketing slop, unreadable long sentences, broken narrow-scr
 3. **Native Accordion Pattern**:
    - DO NOT import heavy JavaScript accordion libraries for simple expandable sections.
    - ALWAYS use native HTML `<details name="...">` elements for exclusive auto-closing single-open accordions.
+
+4. **English-First UI Framing vs. Organic Cultural Touchstones**:
+   - DO NOT translate core game mode names, card headers, or UI action triggers into literal or forced Tagalog (e.g. avoid *"Sino ang pinaka-posibleng..."* or *"Ituro na!"*).
+   - ALWAYS keep UI navigation, mode titles, card headers, and button microcopy in clean, natural English (e.g. *"MOST LIKELY TO..."*, *"POINT NOW!"*).
+   - ALWAYS restrict Filipino vocabulary to organic cultural touchstones (*inuman*, *pulutan*, *ambag*, *tita*, *videoke*, *GCash*, *Angkas*) embedded naturally in prompt text and casual copy.
