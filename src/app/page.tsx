@@ -141,7 +141,7 @@ export default function HomePage() {
               aria-expanded={isModeDropdownOpen}
               aria-haspopup="listbox"
               aria-label="Switch Game Mode"
-              className="brutal-interactive bg-surface-container-low hover:bg-surface-container text-on-surface border-[2px] border-on-surface shadow-brutal-sm rounded-full px-2 sm:px-2.5 py-1 font-mono text-[11px] sm:text-label-code uppercase inline-flex items-center gap-1 whitespace-nowrap focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-on-surface"
+              className="brutal-interactive bg-surface-container-low hover:bg-surface-container text-on-surface border-[2px] border-on-surface shadow-brutal-sm rounded-full px-2.5 py-1.5 min-h-[36px] sm:min-h-[34px] font-mono text-[11px] sm:text-label-code uppercase inline-flex items-center gap-1 whitespace-nowrap focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-on-surface"
             >
               <span className="truncate max-w-[85px] sm:max-w-none">
                 <span className="hidden sm:inline">Never Have I Ever</span>
@@ -237,7 +237,7 @@ export default function HomePage() {
               trackGcashModalOpen('topbar');
             }}
             aria-label="Support the developer - Libreng Tagay"
-            className="brutal-interactive bg-secondary-container hover:bg-secondary-fixed text-on-surface border-[2px] border-on-surface shadow-brutal-sm rounded-full px-2 sm:px-3 py-1 font-mono text-[11px] sm:text-label-code uppercase inline-flex items-center gap-1 whitespace-nowrap focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-on-surface focus-visible:ring-offset-1"
+            className="brutal-interactive bg-secondary-container hover:bg-secondary-fixed text-on-surface border-[2px] border-on-surface shadow-brutal-sm rounded-full px-2.5 sm:px-3 py-1.5 min-h-[36px] sm:min-h-[34px] font-mono text-[11px] sm:text-label-code uppercase inline-flex items-center gap-1 whitespace-nowrap focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-on-surface focus-visible:ring-offset-1"
           >
             <BeerIcon className="w-3.5 h-3.5 shrink-0" />
             <span className="hidden sm:inline">Libreng Tagay</span>
@@ -249,7 +249,7 @@ export default function HomePage() {
               type="button"
               onClick={() => setIsCustomModalOpen(true)}
               aria-label="Open custom cards modal"
-              className="brutal-interactive bg-surface-container-lowest hover:bg-surface-container-low text-on-surface border-[2px] border-on-surface shadow-brutal-sm rounded-full px-2 sm:px-3 py-1 font-mono text-[11px] sm:text-label-code uppercase inline-flex items-center gap-1 whitespace-nowrap focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-on-surface focus-visible:ring-offset-1"
+              className="brutal-interactive bg-surface-container-lowest hover:bg-surface-container-low text-on-surface border-[2px] border-on-surface shadow-brutal-sm rounded-full px-2.5 sm:px-3 py-1.5 min-h-[36px] sm:min-h-[34px] font-mono text-[11px] sm:text-label-code uppercase inline-flex items-center gap-1 whitespace-nowrap focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-on-surface focus-visible:ring-offset-1"
             >
               <PlusIcon className="w-3.5 h-3.5 shrink-0" />
               <span className="hidden sm:inline">Custom ({customCards.length})</span>
@@ -260,7 +260,7 @@ export default function HomePage() {
               type="button"
               onClick={() => setIsPlaying(false)}
               aria-label="Return to Main Menu"
-              className="brutal-interactive bg-surface-container-lowest hover:bg-surface-container-low text-on-surface border-[2px] border-on-surface shadow-brutal-sm rounded-full px-2.5 sm:px-3 py-1 font-mono text-[11px] sm:text-label-code uppercase inline-flex items-center gap-1 whitespace-nowrap focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-on-surface focus-visible:ring-offset-1"
+              className="brutal-interactive bg-surface-container-lowest hover:bg-surface-container-low text-on-surface border-[2px] border-on-surface shadow-brutal-sm rounded-full px-2.5 sm:px-3 py-1.5 min-h-[36px] sm:min-h-[34px] font-mono text-[11px] sm:text-label-code uppercase inline-flex items-center gap-1 whitespace-nowrap focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-on-surface focus-visible:ring-offset-1"
             >
               <ArrowLeftIcon className="w-3.5 h-3.5 shrink-0" />
               <span>Menu</span>
@@ -275,7 +275,7 @@ export default function HomePage() {
           {/* Hero Game Launcher Card */}
           <section
             aria-label="Main Menu"
-            className="max-w-xl w-full bg-surface-container-lowest border-[3px] border-on-surface rounded-card shadow-brutal-card p-5 sm:p-8 flex flex-col gap-5 sm:gap-6"
+            className="max-w-xl w-full bg-surface-container-lowest border-[3px] border-on-surface rounded-card shadow-brutal-card p-4 sm:p-8 flex flex-col gap-4 sm:gap-6"
           >
             {/* Title & Keyword-Aligned Subtitle */}
             <div className="space-y-2">
@@ -286,7 +286,7 @@ export default function HomePage() {
                 Tagay Ta: Pinoy Barkada Party Deck &amp; Drinking Game
               </h1>
               <p className="font-sans text-body-md text-on-surface-variant leading-relaxed">
-                The pass &amp; play conversational party deck calibrated for Filipino inuman sessions, house parties, and late-night confessions. Choose your intensity range and pass the phone around.
+                The Pinoy drinking game for your barkada inuman. Pick an intensity, pass the phone around, and drink if guilty.
               </p>
             </div>
 
@@ -303,7 +303,7 @@ export default function HomePage() {
               <button
                 type="button"
                 onClick={handleStartGame}
-                className="flex-1 py-3.5 px-5 rounded-control bg-primary-container border-[2.5px] border-on-surface shadow-brutal font-display font-bold text-title text-on-surface inline-flex items-center justify-center gap-2 brutal-interactive focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-on-surface"
+                className="flex-1 py-3.5 px-5 min-h-[48px] rounded-control bg-primary-container border-[2.5px] border-on-surface shadow-brutal font-display font-bold text-title text-on-surface inline-flex items-center justify-center gap-2 brutal-interactive focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-on-surface"
               >
                 <span>Start Game • {totalCards} Cards</span>
                 <ArrowRightIcon className="w-5 h-5 shrink-0" />
@@ -312,7 +312,7 @@ export default function HomePage() {
               <button
                 type="button"
                 onClick={() => setIsCustomModalOpen(true)}
-                className="py-3.5 px-4 rounded-control bg-secondary-container border-[2.5px] border-on-surface shadow-brutal font-display font-bold text-body-md text-on-surface inline-flex items-center justify-center gap-1.5 whitespace-nowrap brutal-interactive focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-on-surface"
+                className="py-3.5 px-4 min-h-[48px] rounded-control bg-secondary-container border-[2.5px] border-on-surface shadow-brutal font-display font-bold text-body-md text-on-surface inline-flex items-center justify-center gap-1.5 whitespace-nowrap brutal-interactive focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-on-surface"
               >
                 <PlusIcon className="w-4 h-4 shrink-0" />
                 <span>Custom Cards ({customCards.length})</span>
@@ -320,29 +320,29 @@ export default function HomePage() {
             </div>
 
             {/* Quick Navigation & Share Bar */}
-            <div className="pt-3 border-t border-on-surface/15 flex flex-wrap items-center justify-between gap-2">
-              <nav aria-label="Game Guide Jump Links" className="flex flex-wrap items-center gap-1.5 font-mono text-[11px] sm:text-xs">
+            <div className="pt-3 border-t border-on-surface/15 flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-2.5">
+              <nav aria-label="Game Guide Jump Links" className="flex flex-wrap items-center gap-1.5 sm:gap-2 font-mono text-xs">
                 <a
                   href="#how-to-play"
-                  className="px-2.5 py-1 rounded-full bg-surface border border-on-surface hover:bg-surface-container font-semibold transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-on-surface"
+                  className="inline-flex items-center justify-center min-h-[38px] sm:min-h-[32px] px-3 py-1.5 rounded-full bg-surface border border-on-surface hover:bg-surface-container font-semibold transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-on-surface active:scale-95"
                 >
                   How to Play
                 </a>
                 <a
                   href="#intensity-levels"
-                  className="px-2.5 py-1 rounded-full bg-surface border border-on-surface hover:bg-surface-container font-semibold transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-on-surface"
+                  className="inline-flex items-center justify-center min-h-[38px] sm:min-h-[32px] px-3 py-1.5 rounded-full bg-surface border border-on-surface hover:bg-surface-container font-semibold transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-on-surface active:scale-95"
                 >
                   10 Levels
                 </a>
                 <a
                   href="#inuman-rules"
-                  className="px-2.5 py-1 rounded-full bg-surface border border-on-surface hover:bg-surface-container font-semibold transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-on-surface"
+                  className="inline-flex items-center justify-center min-h-[38px] sm:min-h-[32px] px-3 py-1.5 rounded-full bg-surface border border-on-surface hover:bg-surface-container font-semibold transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-on-surface active:scale-95"
                 >
                   House Rules
                 </a>
                 <a
                   href="#faq"
-                  className="px-2.5 py-1 rounded-full bg-surface border border-on-surface hover:bg-surface-container font-semibold transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-on-surface"
+                  className="inline-flex items-center justify-center min-h-[38px] sm:min-h-[32px] px-3 py-1.5 rounded-full bg-surface border border-on-surface hover:bg-surface-container font-semibold transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-on-surface active:scale-95"
                 >
                   FAQs
                 </a>
@@ -351,7 +351,7 @@ export default function HomePage() {
               <button
                 type="button"
                 onClick={handleShareGame}
-                className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-primary-container text-on-surface border border-on-surface font-mono text-[11px] sm:text-xs font-bold brutal-interactive shadow-brutal-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-on-surface"
+                className="w-full sm:w-auto inline-flex items-center justify-center gap-1.5 min-h-[44px] sm:min-h-[34px] px-3.5 py-2 rounded-full bg-primary-container text-on-surface border border-on-surface font-mono text-xs font-bold brutal-interactive shadow-brutal-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-on-surface active:scale-95"
                 aria-label="Invite friends and share Tagay Ta"
               >
                 {copiedLink ? (
@@ -375,7 +375,7 @@ export default function HomePage() {
             <article
               id="about"
               aria-labelledby="about-heading"
-              className="bg-surface-container-lowest border-[2.5px] border-on-surface rounded-card shadow-brutal p-6 space-y-3"
+              className="bg-surface-container-lowest border-[2.5px] border-on-surface rounded-card shadow-brutal p-4 sm:p-6 space-y-3"
             >
               <div className="flex items-center gap-2">
                 <span className="p-1 rounded-md bg-secondary-container border border-on-surface text-on-surface">
@@ -386,10 +386,10 @@ export default function HomePage() {
                 </h2>
               </div>
               <p className="font-sans text-sm sm:text-body-md text-on-surface-variant leading-relaxed">
-                <strong>Tagay Ta</strong> is a modern Pinoy tabletop party deck and drinking game designed specifically for Filipino barkadas, inuman nights, beach trips, and house parties. Derived from the classic toast <em>&quot;Tagay ta!&quot;</em> (&quot;Let&apos;s drink!&quot;), this card game reimagines <strong>Never Have I Ever</strong> with 500 hand-calibrated prompts rooted in shared Philippine culture.
+                <strong>Tagay Ta</strong> means &quot;let&apos;s drink!&quot; in Visayan. It is a Pinoy drinking game made for barkada inuman nights and house parties. We took <strong>Never Have I Ever</strong> and loaded 500 cards inside.
               </p>
               <p className="font-sans text-sm sm:text-body-md text-on-surface-variant leading-relaxed">
-                Whether you want nostalgic campus memories, spicy office tea, relatable Pinoy habits, or late-night confessions, Tagay Ta provides an instant icebreaker that brings friends closer together—no physical cards to carry and zero app installations needed.
+                No boring generic questions here. Expect real school bloopers, workplace chismis, and late-night dating truths. No cards to lose. No app download needed. Just open your browser and pass the phone around.
               </p>
             </article>
 
@@ -397,13 +397,13 @@ export default function HomePage() {
             <article
               id="how-to-play"
               aria-labelledby="how-to-play-heading"
-              className="bg-surface-container-lowest border-[2.5px] border-on-surface rounded-card shadow-brutal p-6 space-y-4"
+              className="bg-surface-container-lowest border-[2.5px] border-on-surface rounded-card shadow-brutal p-4 sm:p-6 space-y-4"
             >
               <h2 id="how-to-play-heading" className="font-display font-bold text-title sm:text-headline-md tracking-[-0.02em]">
                 How to Play Never Have I Ever (Pinoy Edition)
               </h2>
               <p className="font-sans text-sm sm:text-body-md text-on-surface-variant leading-relaxed">
-                Tagay Ta is built for effortless pass-and-play tabletop gaming in any circle. Here is how to run your game in four simple steps:
+                Playing <strong>Never Have I Ever</strong> with your barkada is fast and simple:
               </p>
               <ol className="space-y-3 font-sans text-sm sm:text-body-md text-on-surface-variant">
                 <li className="flex items-start gap-3 p-3 rounded-control bg-surface border border-on-surface/20">
@@ -411,8 +411,8 @@ export default function HomePage() {
                     01
                   </span>
                   <div>
-                    <strong className="text-on-surface block mb-0.5">Gather the Barkada &amp; Prep Drinks:</strong>
-                    Sit in a circle. Each player grabs their drink of choice—ice-cold beer, mixed drinks with chaser, cocktails, or non-alcoholic juice and iced tea.
+                    <strong className="text-on-surface block mb-0.5">Gather the Barkada &amp; Drinks:</strong>
+                    Sit in a circle. Grab cold beer, mixed drinks, juice, or iced tea.
                   </div>
                 </li>
                 <li className="flex items-start gap-3 p-3 rounded-control bg-surface border border-on-surface/20">
@@ -420,8 +420,8 @@ export default function HomePage() {
                     02
                   </span>
                   <div>
-                    <strong className="text-on-surface block mb-0.5">Dial Your Intensity Range:</strong>
-                    Use the intensity slider at the top to select your comfort zone—from Level 1 (wholesome icebreakers) to Level 10 (unfiltered confessions).
+                    <strong className="text-on-surface block mb-0.5">Pick Your Intensity Level:</strong>
+                    Use the slider to pick your intensity from Level 1 to Level 10.
                   </div>
                 </li>
                 <li className="flex items-start gap-3 p-3 rounded-control bg-surface border border-on-surface/20">
@@ -429,8 +429,8 @@ export default function HomePage() {
                     03
                   </span>
                   <div>
-                    <strong className="text-on-surface block mb-0.5">Pass &amp; Read Aloud:</strong>
-                    The active player holds the phone, reads the card prompt out loud to the room, and passes the device clockwise for the next turn.
+                    <strong className="text-on-surface block mb-0.5">Pass &amp; Read Out Loud:</strong>
+                    Take turns reading the card on screen. Then pass the phone to your right.
                   </div>
                 </li>
                 <li className="flex items-start gap-3 p-3 rounded-control bg-surface border border-on-surface/20">
@@ -438,8 +438,8 @@ export default function HomePage() {
                     04
                   </span>
                   <div>
-                    <strong className="text-on-surface block mb-0.5">Tagay If Guilty &amp; Spill the Tea:</strong>
-                    Anyone who has committed the deed takes a drink (<em>tagay</em>). If only one person drinks, the barkada gets to ask for the backstory!
+                    <strong className="text-on-surface block mb-0.5">Drink If You Are Guilty:</strong>
+                    Take a sip if you did it. If only one person drinks, spill the chismis!
                   </div>
                 </li>
               </ol>
@@ -449,52 +449,58 @@ export default function HomePage() {
             <article
               id="intensity-levels"
               aria-labelledby="levels-heading"
-              className="bg-surface-container-lowest border-[2.5px] border-on-surface rounded-card shadow-brutal p-6 space-y-4"
+              className="bg-surface-container-lowest border-[2.5px] border-on-surface rounded-card shadow-brutal p-4 sm:p-6 space-y-4"
             >
               <h2 id="levels-heading" className="font-display font-bold text-title sm:text-headline-md tracking-[-0.02em]">
-                10 Calibrated Intensity Levels
+                10 Intensity Levels for Any Crowd
               </h2>
               <p className="font-sans text-sm sm:text-body-md text-on-surface-variant leading-relaxed">
-                To keep every party comfortable and avoid awkward mismatches, Tagay Ta groups 500 questions across three distinct tiers:
+                Not every inuman has the same vibe. Tagay Ta splits 500 cards across 10 levels:
               </p>
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
-                <div className="p-3.5 rounded-control bg-surface border border-on-surface space-y-1.5">
-                  <div className="flex items-center gap-1.5 text-tertiary font-mono text-xs font-bold uppercase">
-                    <ChillLeafIcon className="w-4 h-4 shrink-0" />
-                    <span>Levels 1–3: Chill</span>
+                <div className="p-3.5 sm:p-4 rounded-control bg-surface border border-on-surface space-y-2 flex flex-col justify-between">
+                  <div className="space-y-1.5">
+                    <div className="flex items-center gap-1.5 text-tertiary font-mono text-xs font-bold uppercase">
+                      <ChillLeafIcon className="w-4 h-4 shrink-0" />
+                      <span>Levels 1–3: Chill</span>
+                    </div>
+                    <strong className="text-xs font-display font-bold text-on-surface block">
+                      Icebreakers &amp; School Days
+                    </strong>
+                    <p className="font-sans text-xs text-on-surface-variant leading-relaxed">
+                      School bloopers, childhood memories, commute struggles, and funny Pinoy habits. Safe to play with family, workmates, or new friends.
+                    </p>
                   </div>
-                  <strong className="text-xs font-display font-bold text-on-surface block">
-                    Nostalgia &amp; Icebreakers
-                  </strong>
-                  <p className="font-sans text-[12px] text-on-surface-variant leading-normal">
-                    Wholesome school memories, childhood Pinoy TV tropes, commute moments, and relatable Pinoy habits. Safe for family and coworkers.
-                  </p>
                 </div>
 
-                <div className="p-3.5 rounded-control bg-surface border border-on-surface space-y-1.5">
-                  <div className="flex items-center gap-1.5 text-primary font-mono text-xs font-bold uppercase">
-                    <PartyGlassIcon className="w-4 h-4 shrink-0" />
-                    <span>Levels 4–7: Party</span>
+                <div className="p-3.5 sm:p-4 rounded-control bg-surface border border-on-surface space-y-2 flex flex-col justify-between">
+                  <div className="space-y-1.5">
+                    <div className="flex items-center gap-1.5 text-primary font-mono text-xs font-bold uppercase">
+                      <PartyGlassIcon className="w-4 h-4 shrink-0" />
+                      <span>Levels 4–7: Party</span>
+                    </div>
+                    <strong className="text-xs font-display font-bold text-on-surface block">
+                      Office Tea &amp; Situationships
+                    </strong>
+                    <p className="font-sans text-xs text-on-surface-variant leading-relaxed">
+                      Workplace confessions, secret crushes, messy group chats, and weekend drinking stories. Great for close barkadas having beer and pulutan.
+                    </p>
                   </div>
-                  <strong className="text-xs font-display font-bold text-on-surface block">
-                    Drama, Work &amp; Dating
-                  </strong>
-                  <p className="font-sans text-[12px] text-on-surface-variant leading-normal">
-                    College escapades, workplace confessions, social media stalking, and messy situationships. Ideal for barkada weekend drinking sessions.
-                  </p>
                 </div>
 
-                <div className="p-3.5 rounded-control bg-surface border border-on-surface space-y-1.5">
-                  <div className="flex items-center gap-1.5 text-secondary-container-foreground font-mono text-xs font-bold uppercase">
-                    <SpicyFlameIcon className="w-4 h-4 shrink-0" />
-                    <span>Levels 8–10: Spicy</span>
+                <div className="p-3.5 sm:p-4 rounded-control bg-surface border border-on-surface space-y-2 flex flex-col justify-between">
+                  <div className="space-y-1.5">
+                    <div className="flex items-center gap-1.5 text-secondary font-mono text-xs font-bold uppercase">
+                      <SpicyFlameIcon className="w-4 h-4 shrink-0" />
+                      <span>Levels 8–10: Spicy</span>
+                    </div>
+                    <strong className="text-xs font-display font-bold text-on-surface block">
+                      Walwal &amp; Wild Truths
+                    </strong>
+                    <p className="font-sans text-xs text-on-surface-variant leading-relaxed">
+                      Crazy party nights, secret exes, and confessions you rarely tell anyone. Play this only with friends you trust 100%.
+                    </p>
                   </div>
-                  <strong className="text-xs font-display font-bold text-on-surface block">
-                    Walwal &amp; Confessions
-                  </strong>
-                  <p className="font-sans text-[12px] text-on-surface-variant leading-normal">
-                    Unfiltered romantic confessions, wild party stories, secret regrets, and spicy truths. Strictly for your closest trusted circle.
-                  </p>
                 </div>
               </div>
             </article>
@@ -503,37 +509,37 @@ export default function HomePage() {
             <article
               id="inuman-rules"
               aria-labelledby="rules-heading"
-              className="bg-surface-container-lowest border-[2.5px] border-on-surface rounded-card shadow-brutal p-6 space-y-3"
+              className="bg-surface-container-lowest border-[2.5px] border-on-surface rounded-card shadow-brutal p-4 sm:p-6 space-y-3"
             >
               <h2 id="rules-heading" className="font-display font-bold text-title sm:text-headline-md tracking-[-0.02em]">
                 Pinoy Inuman House Rules
               </h2>
               <p className="font-sans text-sm sm:text-body-md text-on-surface-variant leading-relaxed">
-                Add spice and laughter to your game night with these tried-and-tested Filipino drinking game house rules:
+                Make your inuman game louder with these fun Pinoy house rules:
               </p>
               <ul className="space-y-2.5 font-sans text-sm sm:text-body-md text-on-surface-variant">
                 <li className="flex items-start gap-2">
                   <span className="font-mono text-primary font-bold">🍺</span>
                   <div>
-                    <strong className="text-on-surface">The Solo Drinker Tax:</strong> If only one person drinks on a card, they must tell the full story behind the deed before moving to the next round.
+                    <strong className="text-on-surface">The Solo Drinker Tax:</strong> Only one person drank? They must tell the whole story to the group.
                   </div>
                 </li>
                 <li className="flex items-start gap-2">
                   <span className="font-mono text-primary font-bold">🍻</span>
                   <div>
-                    <strong className="text-on-surface">The Dry Question Penalty:</strong> If nobody in the room has done the prompt, the card reader must take a penalty sip for asking a boring question!
+                    <strong className="text-on-surface">The Dry Question Penalty:</strong> Did nobody drink? The card reader takes a sip for pulling a boring card.
                   </div>
                 </li>
                 <li className="flex items-start gap-2">
                   <span className="font-mono text-primary font-bold">🥤</span>
                   <div>
-                    <strong className="text-on-surface">Non-Alcoholic Finger Rule:</strong> Playing without alcohol? Start with 10 fingers up. Each time you are guilty of a prompt, put one finger down. The last player with fingers standing wins!
+                    <strong className="text-on-surface">The 10-Finger Rule (No Booze):</strong> Playing without alcohol? Put up 10 fingers. Drop one finger each time you are guilty. The last player standing wins!
                   </div>
                 </li>
                 <li className="flex items-start gap-2">
                   <span className="font-mono text-primary font-bold">💧</span>
                   <div>
-                    <strong className="text-on-surface">Drink Responsibly:</strong> Always pace yourself, keep cold water and pulutan handy, look out for your friends, and never drink and drive.
+                    <strong className="text-on-surface">Drink Responsibly:</strong> Pace your tagay. Eat your pulutan, drink plenty of water, and never drink and drive.
                   </div>
                 </li>
               </ul>
@@ -543,60 +549,70 @@ export default function HomePage() {
             <article
               id="faq"
               aria-labelledby="faq-heading"
-              className="bg-surface-container-lowest border-[2.5px] border-on-surface rounded-card shadow-brutal p-6 space-y-4"
+              className="bg-surface-container-lowest border-[2.5px] border-on-surface rounded-card shadow-brutal p-4 sm:p-6 space-y-4"
             >
               <h2 id="faq-heading" className="font-display font-bold text-title sm:text-headline-md tracking-[-0.02em]">
                 Frequently Asked Questions
               </h2>
               <div className="space-y-3">
-                <details className="group border border-on-surface/20 rounded-control bg-surface p-3.5 [&_summary::-webkit-details-marker]:hidden">
-                  <summary className="flex items-center justify-between font-display font-bold text-xs sm:text-sm text-on-surface cursor-pointer select-none">
+                <details name="faq" className="group border border-on-surface/20 rounded-control bg-surface overflow-hidden [&_summary::-webkit-details-marker]:hidden transition-colors">
+                  <summary className="flex items-center justify-between font-display font-bold text-xs sm:text-sm text-on-surface cursor-pointer select-none min-h-[44px] p-3.5 hover:bg-surface-container/50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-on-surface focus-visible:ring-inset transition-colors">
                     <span>How many players can play Tagay Ta?</span>
                     <ChevronDownIcon className="w-4 h-4 text-on-surface shrink-0 transition-transform duration-200 group-open:rotate-180" />
                   </summary>
-                  <p className="mt-2.5 font-sans text-xs sm:text-sm text-on-surface-variant leading-relaxed border-t border-on-surface/10 pt-2.5">
-                    Tagay Ta is designed for 2 to 20+ players. Because it functions as a pass-and-play deck on a single mobile screen, your entire barkada participates together without needing separate devices.
-                  </p>
+                  <div className="px-3.5 pb-3.5 pt-0">
+                    <p className="font-sans text-xs sm:text-sm text-on-surface-variant leading-relaxed border-t border-on-surface/10 pt-2.5">
+                      You can play with 2 to 20+ people. Pass one phone around the table. Everyone plays together without installing anything.
+                    </p>
+                  </div>
                 </details>
 
-                <details className="group border border-on-surface/20 rounded-control bg-surface p-3.5 [&_summary::-webkit-details-marker]:hidden">
-                  <summary className="flex items-center justify-between font-display font-bold text-xs sm:text-sm text-on-surface cursor-pointer select-none">
+                <details name="faq" className="group border border-on-surface/20 rounded-control bg-surface overflow-hidden [&_summary::-webkit-details-marker]:hidden transition-colors">
+                  <summary className="flex items-center justify-between font-display font-bold text-xs sm:text-sm text-on-surface cursor-pointer select-none min-h-[44px] p-3.5 hover:bg-surface-container/50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-on-surface focus-visible:ring-inset transition-colors">
                     <span>Can we create our own custom cards?</span>
                     <ChevronDownIcon className="w-4 h-4 text-on-surface shrink-0 transition-transform duration-200 group-open:rotate-180" />
                   </summary>
-                  <p className="mt-2.5 font-sans text-xs sm:text-sm text-on-surface-variant leading-relaxed border-t border-on-surface/10 pt-2.5">
-                    Yes! Tap the &quot;Custom Cards&quot; button in the top bar or menu to forge your own prompts. You can set the intensity level and category, and they are saved locally in your browser and injected into your deck.
-                  </p>
+                  <div className="px-3.5 pb-3.5 pt-0">
+                    <p className="font-sans text-xs sm:text-sm text-on-surface-variant leading-relaxed border-t border-on-surface/10 pt-2.5">
+                      Yes! Tap the &quot;Custom Cards&quot; button to write your own prompts. Pick an intensity level and category. Your cards save right in your browser.
+                    </p>
+                  </div>
                 </details>
 
-                <details className="group border border-on-surface/20 rounded-control bg-surface p-3.5 [&_summary::-webkit-details-marker]:hidden">
-                  <summary className="flex items-center justify-between font-display font-bold text-xs sm:text-sm text-on-surface cursor-pointer select-none">
+                <details name="faq" className="group border border-on-surface/20 rounded-control bg-surface overflow-hidden [&_summary::-webkit-details-marker]:hidden transition-colors">
+                  <summary className="flex items-center justify-between font-display font-bold text-xs sm:text-sm text-on-surface cursor-pointer select-none min-h-[44px] p-3.5 hover:bg-surface-container/50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-on-surface focus-visible:ring-inset transition-colors">
                     <span>Is Tagay Ta free to play?</span>
                     <ChevronDownIcon className="w-4 h-4 text-on-surface shrink-0 transition-transform duration-200 group-open:rotate-180" />
                   </summary>
-                  <p className="mt-2.5 font-sans text-xs sm:text-sm text-on-surface-variant leading-relaxed border-t border-on-surface/10 pt-2.5">
-                    Yes, Tagay Ta is 100% free with no paywalls, accounts, or subscriptions. All 500 calibrated prompts and game tools are available immediately.
-                  </p>
+                  <div className="px-3.5 pb-3.5 pt-0">
+                    <p className="font-sans text-xs sm:text-sm text-on-surface-variant leading-relaxed border-t border-on-surface/10 pt-2.5">
+                      Yes, it is 100% free. There are no paywalls, sign-ups, or subscriptions. All 500 cards and 10 levels are unlocked immediately.
+                    </p>
+                  </div>
                 </details>
 
-                <details className="group border border-on-surface/20 rounded-control bg-surface p-3.5 [&_summary::-webkit-details-marker]:hidden">
-                  <summary className="flex items-center justify-between font-display font-bold text-xs sm:text-sm text-on-surface cursor-pointer select-none">
+                <details name="faq" className="group border border-on-surface/20 rounded-control bg-surface overflow-hidden [&_summary::-webkit-details-marker]:hidden transition-colors">
+                  <summary className="flex items-center justify-between font-display font-bold text-xs sm:text-sm text-on-surface cursor-pointer select-none min-h-[44px] p-3.5 hover:bg-surface-container/50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-on-surface focus-visible:ring-inset transition-colors">
                     <span>Can we play Tagay Ta online or remotely?</span>
                     <ChevronDownIcon className="w-4 h-4 text-on-surface shrink-0 transition-transform duration-200 group-open:rotate-180" />
                   </summary>
-                  <p className="mt-2.5 font-sans text-xs sm:text-sm text-on-surface-variant leading-relaxed border-t border-on-surface/10 pt-2.5">
-                    Yes! One host can share their browser screen over Discord, Zoom, or Google Meet while everyone plays along with their drinks at home.
-                  </p>
+                  <div className="px-3.5 pb-3.5 pt-0">
+                    <p className="font-sans text-xs sm:text-sm text-on-surface-variant leading-relaxed border-t border-on-surface/10 pt-2.5">
+                      Yes! Share your screen on Discord, Zoom, or Google Meet. Friends can drink along from their own homes.
+                    </p>
+                  </div>
                 </details>
 
-                <details className="group border border-on-surface/20 rounded-control bg-surface p-3.5 [&_summary::-webkit-details-marker]:hidden">
-                  <summary className="flex items-center justify-between font-display font-bold text-xs sm:text-sm text-on-surface cursor-pointer select-none">
+                <details name="faq" className="group border border-on-surface/20 rounded-control bg-surface overflow-hidden [&_summary::-webkit-details-marker]:hidden transition-colors">
+                  <summary className="flex items-center justify-between font-display font-bold text-xs sm:text-sm text-on-surface cursor-pointer select-none min-h-[44px] p-3.5 hover:bg-surface-container/50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-on-surface focus-visible:ring-inset transition-colors">
                     <span>What happens when all 500 cards are played?</span>
                     <ChevronDownIcon className="w-4 h-4 text-on-surface shrink-0 transition-transform duration-200 group-open:rotate-180" />
                   </summary>
-                  <p className="mt-2.5 font-sans text-xs sm:text-sm text-on-surface-variant leading-relaxed border-t border-on-surface/10 pt-2.5">
-                    The deck automatically reshuffles using a cryptographic Fisher-Yates shuffle, guaranteeing a fresh card sequence every single time you play.
-                  </p>
+                  <div className="px-3.5 pb-3.5 pt-0">
+                    <p className="font-sans text-xs sm:text-sm text-on-surface-variant leading-relaxed border-t border-on-surface/10 pt-2.5">
+                      The deck shuffles automatically when you reach the end. You get a brand-new card order every single game.
+                    </p>
+                  </div>
                 </details>
               </div>
             </article>
@@ -605,7 +621,7 @@ export default function HomePage() {
             <div className="text-center pt-2">
               <a
                 href="#top"
-                className="inline-flex items-center gap-1.5 font-mono text-xs font-bold text-on-surface-variant hover:text-primary transition-colors underline-offset-4 hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-on-surface rounded-token px-2 py-1"
+                className="inline-flex items-center justify-center min-h-[44px] gap-1.5 font-mono text-xs font-bold text-on-surface-variant hover:text-primary transition-colors underline-offset-4 hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-on-surface rounded-token px-3 py-2"
               >
                 <span>↑ Back to Deck &amp; Start Playing</span>
               </a>
@@ -614,34 +630,34 @@ export default function HomePage() {
 
           {/* Footer Navigation & Credits */}
           <footer className="w-full max-w-xl text-center pt-4 pb-2 space-y-2 border-t border-on-surface/10">
-            <div className="flex flex-wrap items-center justify-center gap-3 font-mono text-xs text-on-surface-variant">
+            <div className="flex flex-wrap items-center justify-center gap-2 sm:gap-3 font-mono text-xs text-on-surface-variant">
               <a
                 href="https://jedmamosto.me"
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={() => trackPortfolioClick('main_menu_footer')}
-                className="inline-flex items-center gap-1 hover:text-primary transition-colors underline-offset-4 hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-on-surface rounded-token px-1"
+                className="inline-flex items-center justify-center min-h-[44px] gap-1 hover:text-primary transition-colors underline-offset-4 hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-on-surface rounded-token px-2 py-1"
               >
                 <span>Crafted by Jed Mamosto</span>
                 <ExternalLinkIcon className="w-3.5 h-3.5 shrink-0" />
               </a>
-              <span>•</span>
+              <span className="hidden sm:inline">•</span>
               <a
                 href="/sitemap.xml"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="hover:text-primary transition-colors underline-offset-4 hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-on-surface rounded-token px-1"
+                className="inline-flex items-center justify-center min-h-[44px] hover:text-primary transition-colors underline-offset-4 hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-on-surface rounded-token px-2 py-1"
               >
                 Sitemap
               </a>
-              <span>•</span>
+              <span className="hidden sm:inline">•</span>
               <button
                 type="button"
                 onClick={() => {
                   setIsGcashModalOpen(true);
                   trackGcashModalOpen('footer');
                 }}
-                className="hover:text-primary transition-colors underline-offset-4 hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-on-surface rounded-token px-1"
+                className="inline-flex items-center justify-center min-h-[44px] hover:text-primary transition-colors underline-offset-4 hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-on-surface rounded-token px-2 py-1"
               >
                 Libreng Tagay 🍻
               </button>

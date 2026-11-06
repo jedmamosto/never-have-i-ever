@@ -163,34 +163,18 @@ const jsonLd = {
       mainEntity: [
         {
           "@type": "Question",
-          name: "What is Tagay Ta?",
+          name: "How many players can play Tagay Ta?",
           acceptedAnswer: {
             "@type": "Answer",
-            text: "Tagay Ta is a mobile-first Pinoy tabletop party deck and drinking game featuring 500 hand-calibrated Never Have I Ever prompts across 10 intensity levels for Filipino barkadas.",
+            text: "You can play with 2 to 20+ people. Pass one phone around the table. Everyone plays together without installing anything.",
           },
         },
         {
           "@type": "Question",
-          name: "How do the 10 intensity levels work?",
+          name: "Can we create our own custom cards?",
           acceptedAnswer: {
             "@type": "Answer",
-            text: "Levels 1 to 3 are Chill Icebreakers and high school nostalgia. Levels 4 to 7 are Spicy Party prompts and work/college drama. Levels 8 to 10 are Unfiltered Confessions and full walwalan mode.",
-          },
-        },
-        {
-          "@type": "Question",
-          name: "Can Tagay Ta be played without alcohol?",
-          acceptedAnswer: {
-            "@type": "Answer",
-            text: "Yes! Tagay Ta is designed as both a drinking game and a tabletop conversation deck. You can play with iced tea, juice, points, or funny dare penalties.",
-          },
-        },
-        {
-          "@type": "Question",
-          name: "Can I add my own custom questions?",
-          acceptedAnswer: {
-            "@type": "Answer",
-            text: "Yes. Tagay Ta includes a Custom Card Forge where you can write custom prompt cards, assign an intensity level and category, and inject them directly into your active game deck.",
+            text: "Yes! Tap the Custom Cards button to write your own prompts. Pick an intensity level and category. Your cards save right in your browser.",
           },
         },
         {
@@ -198,7 +182,23 @@ const jsonLd = {
           name: "Is Tagay Ta free to play?",
           acceptedAnswer: {
             "@type": "Answer",
-            text: "Yes, Tagay Ta is 100% free with no paywalls or signups required. All 500 calibrated cards and custom features are immediately accessible in your browser.",
+            text: "Yes, it is 100% free. There are no paywalls, sign-ups, or subscriptions. All 500 cards and 10 levels are unlocked immediately.",
+          },
+        },
+        {
+          "@type": "Question",
+          name: "Can we play Tagay Ta online or remotely?",
+          acceptedAnswer: {
+            "@type": "Answer",
+            text: "Yes! Share your screen on Discord, Zoom, or Google Meet. Friends can drink along from their own homes.",
+          },
+        },
+        {
+          "@type": "Question",
+          name: "What happens when all 500 cards are played?",
+          acceptedAnswer: {
+            "@type": "Answer",
+            text: "The deck shuffles automatically when you reach the end. You get a brand-new card order every single game.",
           },
         },
       ],
