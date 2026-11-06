@@ -1,5 +1,6 @@
 export type IntensityLevel = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10;
 export type IntensityTier = 'chill' | 'party' | 'spicy';
+export type GameMode = 'never-have-i-ever' | 'most-likely-to';
 
 export interface IntensityRange {
   min: IntensityLevel;

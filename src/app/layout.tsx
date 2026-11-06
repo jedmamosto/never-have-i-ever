@@ -30,15 +30,95 @@ const spaceMono = Space_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Never Have I Ever — Tactile Party Deck",
+  metadataBase: new URL("https://tagay-ta.vercel.app"),
+  title: {
+    default: "Tagay Ta — Pinoy Barkada Party Deck & Drinking Game",
+    template: "%s | Tagay Ta",
+  },
   description:
-    "A warm editorial neo-brutalist party prompt deck spanning chill icebreakers, group lore, and late-night confessions.",
+    "The ultimate Pinoy barkada party deck. 500 calibrated Never Have I Ever prompts across 10 intensity levels for inuman sessions, chill hangouts, and late-night confessions.",
+  applicationName: "Tagay Ta",
+  authors: [{ name: "Jed Mamosto", url: "https://jedmamosto.me" }],
+  generator: "Next.js",
+  keywords: [
+    "Tagay Ta",
+    "Never Have I Ever",
+    "Pinoy Party Game",
+    "Inuman Games",
+    "Barkada Game",
+    "Drinking Game Philippines",
+    "Taglish party deck",
+    "Pinoy icebreakers",
+    "Tabletop card game",
+  ],
+  creator: "Jed Mamosto",
+  publisher: "Tagay Ta",
+  alternates: {
+    canonical: "/",
+  },
+  openGraph: {
+    title: "Tagay Ta — Pinoy Barkada Party Deck & Drinking Game",
+    description:
+      "The ultimate Pinoy barkada party deck. 500 calibrated Never Have I Ever prompts across 10 intensity levels for inuman sessions and chill hangouts.",
+    url: "https://tagay-ta.vercel.app",
+    siteName: "Tagay Ta",
+    locale: "en_PH",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Tagay Ta — Pinoy Barkada Party Deck & Drinking Game",
+    description:
+      "The ultimate Pinoy barkada party deck. 500 calibrated Never Have I Ever prompts across 10 intensity levels for inuman sessions.",
+    creator: "@jedmamosto",
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
 };
 
 export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
   themeColor: "#fcf9f4",
+};
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebApplication",
+      "@id": "https://tagay-ta.vercel.app/#webapp",
+      "name": "Tagay Ta",
+      "alternateName": "Tagay Ta — Pinoy Barkada Party Deck",
+      "url": "https://tagay-ta.vercel.app",
+      "applicationCategory": "GameApplication",
+      "operatingSystem": "All",
+      "browserRequirements": "Requires JavaScript. Requires HTML5.",
+      "description":
+        "The ultimate Pinoy barkada party deck. 500 calibrated Never Have I Ever prompts across 10 intensity levels for inuman sessions, chill hangouts, and late-night confessions.",
+      "genre": ["Party Game", "Drinking Game", "Card Game", "Social Game"],
+      "inLanguage": ["en", "fil"],
+      "author": {
+        "@type": "Person",
+        "name": "Jed Mamosto",
+        "url": "https://jedmamosto.me",
+      },
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "PHP",
+      },
+    },
+  ],
 };
 
 export default function RootLayout({
@@ -52,6 +132,10 @@ export default function RootLayout({
       className={`${spaceGrotesk.variable} ${plusJakartaSans.variable} ${spaceMono.variable}`}
     >
       <body className="min-h-dvh bg-surface bg-dot-grid font-sans text-on-surface antialiased selection:bg-secondary-container selection:text-on-surface">
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
         {children}
         <Analytics />
         <SpeedInsights />

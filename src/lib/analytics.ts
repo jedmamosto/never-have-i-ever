@@ -65,3 +65,28 @@ export function trackDeckShuffled(totalCards: number) {
     total_cards: totalCards,
   });
 }
+
+export function trackGcashModalOpen(sourceOrParams?: string | { source?: string }) {
+  const source = typeof sourceOrParams === 'string' ? sourceOrParams : sourceOrParams?.source;
+  track('gcash_modal_open', source ? { source } : {});
+}
+
+export function trackGcashNumberCopied() {
+  track('gcash_number_copied');
+}
+
+export function trackModeTeaserOpen(modeOrParams?: string | { mode?: string }) {
+  const mode = typeof modeOrParams === 'string' ? modeOrParams : modeOrParams?.mode ?? 'most-likely-to';
+  track('mode_teaser_open', { mode });
+}
+
+export function trackModeTeaserInterest(modeOrParams?: string | { mode?: string }) {
+  const mode = typeof modeOrParams === 'string' ? modeOrParams : modeOrParams?.mode ?? 'most-likely-to';
+  track('mode_teaser_interest', { mode });
+}
+
+export function trackPortfolioClick(sourceOrParams?: string | { source?: string }) {
+  const source = typeof sourceOrParams === 'string' ? sourceOrParams : sourceOrParams?.source ?? 'main_menu';
+  track('portfolio_click', { source });
+}
+
