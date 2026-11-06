@@ -36,7 +36,7 @@ export const metadata: Metadata = {
     template: "%s | Tagay Ta",
   },
   description:
-    "The ultimate Pinoy barkada party deck. 500 calibrated Never Have I Ever prompts across 10 intensity levels for inuman sessions, chill hangouts, and late-night confessions.",
+    "Tagay Ta is the ultimate Pinoy barkada party deck. 500 calibrated Never Have I Ever prompts across 10 intensity levels for epic inuman sessions.",
   applicationName: "Tagay Ta",
   authors: [{ name: "Jed Mamosto", url: "https://jedmamosto.me" }],
   generator: "Next.js",
@@ -53,13 +53,22 @@ export const metadata: Metadata = {
   ],
   creator: "Jed Mamosto",
   publisher: "Tagay Ta",
+  icons: {
+    icon: [
+      { url: "/icon.svg", type: "image/svg+xml" },
+    ],
+    apple: [
+      { url: "/apple-icon", sizes: "180x180", type: "image/png" },
+    ],
+  },
+  manifest: "/manifest.webmanifest",
   alternates: {
     canonical: "/",
   },
   openGraph: {
     title: "Tagay Ta — Pinoy Barkada Party Deck & Drinking Game",
     description:
-      "The ultimate Pinoy barkada party deck. 500 calibrated Never Have I Ever prompts across 10 intensity levels for inuman sessions and chill hangouts.",
+      "Tagay Ta is the ultimate Pinoy barkada party deck. 500 calibrated Never Have I Ever prompts across 10 intensity levels for epic inuman sessions.",
     url: "https://tagay-ta.vercel.app",
     siteName: "Tagay Ta",
     locale: "en_PH",
@@ -69,7 +78,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Tagay Ta — Pinoy Barkada Party Deck & Drinking Game",
     description:
-      "The ultimate Pinoy barkada party deck. 500 calibrated Never Have I Ever prompts across 10 intensity levels for inuman sessions.",
+      "Tagay Ta is the ultimate Pinoy barkada party deck. 500 calibrated Never Have I Ever prompts across 10 intensity levels for epic inuman sessions.",
     creator: "@jedmamosto",
   },
   robots: {
@@ -97,26 +106,102 @@ const jsonLd = {
     {
       "@type": "WebApplication",
       "@id": "https://tagay-ta.vercel.app/#webapp",
-      "name": "Tagay Ta",
-      "alternateName": "Tagay Ta — Pinoy Barkada Party Deck",
-      "url": "https://tagay-ta.vercel.app",
-      "applicationCategory": "GameApplication",
-      "operatingSystem": "All",
-      "browserRequirements": "Requires JavaScript. Requires HTML5.",
-      "description":
-        "The ultimate Pinoy barkada party deck. 500 calibrated Never Have I Ever prompts across 10 intensity levels for inuman sessions, chill hangouts, and late-night confessions.",
-      "genre": ["Party Game", "Drinking Game", "Card Game", "Social Game"],
-      "inLanguage": ["en", "fil"],
-      "author": {
+      name: "Tagay Ta",
+      alternateName: "Tagay Ta — Pinoy Barkada Party Deck & Drinking Game",
+      url: "https://tagay-ta.vercel.app",
+      applicationCategory: "GameApplication",
+      operatingSystem: "All",
+      browserRequirements: "Requires JavaScript. Requires HTML5.",
+      description:
+        "Tagay Ta is the ultimate Pinoy barkada party deck. 500 calibrated Never Have I Ever prompts across 10 intensity levels for epic inuman sessions.",
+      genre: ["Party Game", "Drinking Game", "Card Game", "Social Game"],
+      inLanguage: ["en", "fil"],
+      numberOfPlayers: "2+",
+      author: {
         "@type": "Person",
-        "name": "Jed Mamosto",
-        "url": "https://jedmamosto.me",
+        name: "Jed Mamosto",
+        url: "https://jedmamosto.me",
       },
-      "offers": {
+      offers: {
         "@type": "Offer",
-        "price": "0",
-        "priceCurrency": "PHP",
+        price: "0",
+        priceCurrency: "PHP",
       },
+    },
+    {
+      "@type": "HowTo",
+      "@id": "https://tagay-ta.vercel.app/#howto",
+      name: "How to Play Tagay Ta: Pinoy Barkada Drinking Game",
+      description:
+        "Step-by-step instructions for playing Tagay Ta Never Have I Ever card game with friends during inuman sessions.",
+      step: [
+        {
+          "@type": "HowToStep",
+          name: "Gather the Barkada & Prepare Drinks",
+          text: "Sit in a circle with your group and prepare your drinks of choice—whether beer, mixed drinks with chaser, or non-alcoholic juice.",
+        },
+        {
+          "@type": "HowToStep",
+          name: "Choose Your Intensity Range",
+          text: "Use the intensity slider to calibrate your session from Level 1 (Chill Icebreakers) up to Level 10 (Walwalan & Deep Confessions).",
+        },
+        {
+          "@type": "HowToStep",
+          name: "Pass and Read Aloud",
+          text: "Pass the device around. The active player reads the card out loud to the group.",
+        },
+        {
+          "@type": "HowToStep",
+          name: "Drink If Guilty & Share the Story",
+          text: "Anyone who has done the act takes a drink (tagay). If only one person drinks, they have to share the backstory!",
+        },
+      ],
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://tagay-ta.vercel.app/#faq",
+      mainEntity: [
+        {
+          "@type": "Question",
+          name: "What is Tagay Ta?",
+          acceptedAnswer: {
+            "@type": "Answer",
+            text: "Tagay Ta is a mobile-first Pinoy tabletop party deck and drinking game featuring 500 hand-calibrated Never Have I Ever prompts across 10 intensity levels for Filipino barkadas.",
+          },
+        },
+        {
+          "@type": "Question",
+          name: "How do the 10 intensity levels work?",
+          acceptedAnswer: {
+            "@type": "Answer",
+            text: "Levels 1 to 3 are Chill Icebreakers and high school nostalgia. Levels 4 to 7 are Spicy Party prompts and work/college drama. Levels 8 to 10 are Unfiltered Confessions and full walwalan mode.",
+          },
+        },
+        {
+          "@type": "Question",
+          name: "Can Tagay Ta be played without alcohol?",
+          acceptedAnswer: {
+            "@type": "Answer",
+            text: "Yes! Tagay Ta is designed as both a drinking game and a tabletop conversation deck. You can play with iced tea, juice, points, or funny dare penalties.",
+          },
+        },
+        {
+          "@type": "Question",
+          name: "Can I add my own custom questions?",
+          acceptedAnswer: {
+            "@type": "Answer",
+            text: "Yes. Tagay Ta includes a Custom Card Forge where you can write custom prompt cards, assign an intensity level and category, and inject them directly into your active game deck.",
+          },
+        },
+        {
+          "@type": "Question",
+          name: "Is Tagay Ta free to play?",
+          acceptedAnswer: {
+            "@type": "Answer",
+            text: "Yes, Tagay Ta is 100% free with no paywalls or signups required. All 500 calibrated cards and custom features are immediately accessible in your browser.",
+          },
+        },
+      ],
     },
   ],
 };
