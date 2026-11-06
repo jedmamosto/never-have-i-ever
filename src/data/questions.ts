@@ -1075,7 +1075,7 @@ export const INITIAL_QUESTIONS: QuestionCard[] = [
     level: 4,
     tier: 'party',
     category: 'PARTY LORE',
-    text: 'Pulled a ninja move to escape a party.'
+    text: 'Mixed beer with iced tea to survive the drinking circle.'
   },
   {
     id: 'q-153',
@@ -1138,7 +1138,7 @@ export const INITIAL_QUESTIONS: QuestionCard[] = [
     level: 4,
     tier: 'party',
     category: 'PETTY ARCHIVES',
-    text: 'Ate the last piece of chicken skin secretly.'
+    text: 'Hoarded the pulutan bowl on my side of the table.'
   },
   {
     id: 'q-162',
@@ -1498,7 +1498,7 @@ export const INITIAL_QUESTIONS: QuestionCard[] = [
     level: 5,
     tier: 'party',
     category: 'PETTY ARCHIVES',
-    text: 'Sent a fake or cropped GCash screenshot.'
+    text: 'Promised to send my ambag later and hoped everyone forgot.'
   },
   {
     id: 'q-213',
@@ -1837,7 +1837,7 @@ export const INITIAL_QUESTIONS: QuestionCard[] = [
     level: 6,
     tier: 'party',
     category: 'DEEP LORE',
-    text: 'Cried in a club or bar bathroom.'
+    text: 'Drunk-cried to a Grab driver about my quarter-life crisis.'
   },
   {
     id: 'q-261',
@@ -1914,7 +1914,7 @@ export const INITIAL_QUESTIONS: QuestionCard[] = [
     level: 6,
     tier: 'party',
     category: 'PARTY LORE',
-    text: 'Made a best friend in a nightclub bathroom.'
+    text: 'Lost a sneaker or heel on a crowded club dance floor.'
   },
   {
     id: 'q-272',
@@ -1984,7 +1984,7 @@ export const INITIAL_QUESTIONS: QuestionCard[] = [
     level: 6,
     tier: 'party',
     category: 'SOCIAL CRIMES',
-    text: 'Called in sick to work with a brutal hangover.'
+    text: 'Attended an 8 AM Zoom meeting still drunk from last night.'
   },
   {
     id: 'q-282',
@@ -2211,7 +2211,7 @@ export const INITIAL_QUESTIONS: QuestionCard[] = [
     level: 7,
     tier: 'party',
     category: 'PETTY ARCHIVES',
-    text: 'Heart-reacted to a party plan with no intention to go.'
+    text: 'Unfollowed everyone who went on a trip without inviting me.'
   },
   {
     id: 'q-314',
@@ -2344,7 +2344,7 @@ export const INITIAL_QUESTIONS: QuestionCard[] = [
     level: 7,
     tier: 'party',
     category: 'SOCIAL CRIMES',
-    text: 'Overheard my closest friends talking behind my back.'
+    text: 'Brought an uninvited plus-one to an intimate dinner party.'
   },
   {
     id: 'q-333',
@@ -2400,7 +2400,7 @@ export const INITIAL_QUESTIONS: QuestionCard[] = [
     level: 7,
     tier: 'party',
     category: 'PLOT TWISTS',
-    text: 'Accidentally sent a screenshot to the person it was about.'
+    text: 'Accidentally matched with my friend\'s ex on a dating app.'
   },
   {
     id: 'q-341',

@@ -133,6 +133,57 @@ for (let lvl = 1; lvl <= 10; lvl++) {
   }
 }
 
+// 3. Semantic / fuzzy deduplication check (Jaccard >= 0.65 or Levenshtein >= 0.75)
+function cleanWords(text) {
+  return text.toLowerCase().replace(/[^a-z0-9\s]/g, '').split(/\s+/).filter(Boolean);
+}
+
+function jaccard(setA, setB) {
+  const intersection = new Set([...setA].filter(x => setB.has(x)));
+  const union = new Set([...setA, ...setB]);
+  return intersection.size / union.size;
+}
+
+function levenshtein(a, b) {
+  const matrix = [];
+  for (let i = 0; i <= b.length; i++) matrix[i] = [i];
+  for (let j = 0; j <= a.length; j++) matrix[0][j] = j;
+  for (let i = 1; i <= b.length; i++) {
+    for (let j = 1; j <= a.length; j++) {
+      if (b.charAt(i - 1) === a.charAt(j - 1)) {
+        matrix[i][j] = matrix[i - 1][j - 1];
+      } else {
+        matrix[i][j] = Math.min(
+          matrix[i - 1][j - 1] + 1,
+          matrix[i][j - 1] + 1,
+          matrix[i - 1][j] + 1
+        );
+      }
+    }
+  }
+  return matrix[b.length][a.length];
+}
+
+for (let i = 0; i < questions.length; i++) {
+  const wordsA = new Set(cleanWords(questions[i].text));
+  const normA = questions[i].text.toLowerCase().replace(/[^a-z0-9]/g, '');
+  for (let j = i + 1; j < questions.length; j++) {
+    const wordsB = new Set(cleanWords(questions[j].text));
+    const normB = questions[j].text.toLowerCase().replace(/[^a-z0-9]/g, '');
+
+    const jSim = jaccard(wordsA, wordsB);
+    const maxLen = Math.max(normA.length, normB.length);
+    const levDist = levenshtein(normA, normB);
+    const levSim = 1 - (levDist / maxLen);
+
+    if (jSim >= 0.65 || levSim >= 0.75) {
+      errors.push(
+        `Semantic near-duplicate detected between ${questions[i].id} and ${questions[j].id} (Jaccard: ${(jSim * 100).toFixed(0)}%, Lev: ${(levSim * 100).toFixed(0)}%):\n    "${questions[i].text}" vs "${questions[j].text}"`
+      );
+    }
+  }
+}
+
 if (errors.length > 0) {
   console.error('DATASET VERIFICATION FAILED:');
   for (const err of errors) {
@@ -145,6 +196,7 @@ console.log('DATASET VERIFICATION PASSED:');
 console.log(`  - Total questions: ${questions.length}`);
 console.log(`  - Unique IDs: ${seenIds.size} (q-001..q-500)`);
 console.log(`  - Unique normalized prompts: ${seenTexts.size}`);
+console.log('  - Semantic & exact deduplication (Jaccard < 0.65, Levenshtein < 0.75): 100% valid');
 console.log(
   `  - Level distribution: ${Array.from(levelCounts.entries())
     .map(([lvl, c]) => `L${lvl}:${c}`)
