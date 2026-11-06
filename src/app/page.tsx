@@ -296,32 +296,32 @@ export default function HomePage() {
       </header>
 
       {!isPlaying ? (
-        /* Main Menu Screen */
-        <main className="flex-1 flex flex-col items-center justify-start w-full max-w-5xl mx-auto px-3 sm:px-6 py-4 sm:py-8 gap-8">
+        /* Main Menu Screen (Expanded Single-Column Centered Layout) */
+        <main className="flex-1 flex flex-col items-center justify-start w-full max-w-4xl mx-auto px-3 sm:px-6 py-4 sm:py-8 gap-8">
           {/* Hero Game Launcher Card */}
           <section
             aria-label="Main Menu"
-            className="max-w-xl w-full bg-surface-container-lowest border-[3px] border-on-surface rounded-card shadow-brutal-card p-4 sm:p-7 flex flex-col gap-4 sm:gap-5"
+            className="w-full bg-surface-container-lowest border-[3px] border-on-surface rounded-card shadow-brutal-card p-4 sm:p-7 md:p-8 flex flex-col gap-5 sm:gap-6"
           >
             {/* Inline 2-Mode Segmented Switcher */}
             <div
               role="tablist"
               aria-label="Game Mode Switcher"
-              className="grid grid-cols-2 p-1 rounded-control bg-surface border-2 border-on-surface gap-1"
+              className="grid grid-cols-2 p-1.5 rounded-control bg-surface border-2 border-on-surface gap-1.5"
             >
               <button
                 type="button"
                 role="tab"
                 aria-selected={gameMode === 'never-have-i-ever'}
                 onClick={() => setGameMode('never-have-i-ever')}
-                className={`py-2 px-2.5 rounded-token font-mono text-xs font-bold uppercase transition-all duration-100 flex items-center justify-center gap-1.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-on-surface ${
+                className={`min-h-[44px] py-2 px-3 rounded-token font-mono text-xs sm:text-sm font-bold uppercase transition-all duration-100 flex items-center justify-center gap-1.5 cursor-pointer brutal-interactive focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-on-surface ${
                   gameMode === 'never-have-i-ever'
                     ? 'bg-secondary-container text-on-surface border-2 border-on-surface shadow-brutal-sm -translate-y-[1px]'
-                    : 'bg-transparent text-on-surface-variant hover:text-on-surface'
+                    : 'bg-transparent text-on-surface-variant hover:text-on-surface hover:bg-surface-container-low'
                 }`}
               >
                 <span>🍺 Never Have I Ever</span>
-                <span className="font-mono text-[10px] opacity-75 hidden sm:inline">(500)</span>
+                <span className="font-mono text-[11px] opacity-80 hidden sm:inline">(500 Cards)</span>
               </button>
 
               <button
@@ -329,14 +329,14 @@ export default function HomePage() {
                 role="tab"
                 aria-selected={gameMode === 'most-likely-to'}
                 onClick={() => setGameMode('most-likely-to')}
-                className={`py-2 px-2.5 rounded-token font-mono text-xs font-bold uppercase transition-all duration-100 flex items-center justify-center gap-1.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-on-surface ${
+                className={`min-h-[44px] py-2 px-3 rounded-token font-mono text-xs sm:text-sm font-bold uppercase transition-all duration-100 flex items-center justify-center gap-1.5 cursor-pointer brutal-interactive focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-on-surface ${
                   gameMode === 'most-likely-to'
                     ? 'bg-primary-container text-on-surface border-2 border-on-surface shadow-brutal-sm -translate-y-[1px]'
-                    : 'bg-transparent text-on-surface-variant hover:text-on-surface'
+                    : 'bg-transparent text-on-surface-variant hover:text-on-surface hover:bg-surface-container-low'
                 }`}
               >
                 <span>👉 Most Likely To</span>
-                <span className="font-mono text-[10px] opacity-75 hidden sm:inline">(100)</span>
+                <span className="font-mono text-[11px] opacity-80 hidden sm:inline">(100 Cards)</span>
               </button>
             </div>
 
@@ -358,7 +358,7 @@ export default function HomePage() {
             {currentCard && (
               <div
                 aria-label="Live card sample"
-                className="p-3.5 sm:p-4 rounded-control bg-surface border-2 border-on-surface shadow-brutal-sm flex flex-col gap-2.5"
+                className="p-4 sm:p-5 rounded-control bg-surface border-2 border-on-surface shadow-brutal-sm flex flex-col gap-2.5"
               >
                 <div className="flex items-center justify-between gap-2">
                   <div className="flex items-center gap-1.5">
@@ -387,7 +387,7 @@ export default function HomePage() {
                   <span className="font-mono text-[10px] sm:text-[11px] uppercase tracking-wider font-bold text-primary block">
                     {gameMode === 'most-likely-to' ? 'MOST LIKELY TO...' : 'NEVER HAVE I EVER...'}
                   </span>
-                  <p className="font-display font-bold text-base sm:text-title text-on-surface leading-snug">
+                  <p className="font-display font-bold text-base sm:text-title md:text-headline-sm text-on-surface leading-snug">
                     {currentCard.text}
                   </p>
                 </div>
@@ -489,7 +489,7 @@ export default function HomePage() {
           </section>
 
           {/* Semantic SEO & Player Guide Sections */}
-          <div className="w-full max-w-xl flex flex-col gap-6 text-on-surface">
+          <div className="w-full flex flex-col gap-6 text-on-surface">
             {/* Section 1: About Tagay Ta */}
             <article
               id="about"
@@ -949,7 +949,7 @@ export default function HomePage() {
           </div>
 
           {/* Footer Navigation & Credits */}
-          <footer className="w-full max-w-xl text-center pt-4 pb-2 space-y-2 border-t border-on-surface/10">
+          <footer className="w-full text-center pt-8 pb-3 mt-4 space-y-2 border-t border-on-surface/10">
             <div className="flex flex-wrap items-center justify-center gap-2 sm:gap-3 font-mono text-xs text-on-surface-variant">
               <a
                 href="https://jedmamosto.me"
