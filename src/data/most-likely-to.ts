@@ -97,7 +97,7 @@ export const MOST_LIKELY_TO_QUESTIONS: QuestionCard[] = [
     level: 2,
     tier: 'chill',
     category: 'FILIPINO TIME',
-    text: "Text 'on the way na' while still in the shower."
+    text: "Text 'on my way' while still in the shower."
   },
   {
     id: 'mlt-014',
@@ -319,7 +319,7 @@ export const MOST_LIKELY_TO_QUESTIONS: QuestionCard[] = [
     level: 5,
     tier: 'party',
     category: 'INUMAN ETIQUETTE',
-    text: "Declare 'one drink lang' then close down the bar."
+    text: "Declare 'just one drink' then close down the bar."
   },
   {
     id: 'mlt-044',

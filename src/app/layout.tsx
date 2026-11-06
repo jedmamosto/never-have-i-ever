@@ -32,17 +32,23 @@ const spaceMono = Space_Mono({
 export const metadata: Metadata = {
   metadataBase: new URL("https://tagay-ta.vercel.app"),
   title: {
-    default: "Tagay Ta — Pinoy Barkada Party Deck & Drinking Game",
+    default:
+      "Tagay Ta — Pinoy Barkada Party Deck & Drinking Game (Never Have I Ever & Most Likely To)",
     template: "%s | Tagay Ta",
   },
   description:
-    "Tagay Ta is the ultimate Pinoy barkada party deck. 500 calibrated Never Have I Ever prompts across 10 intensity levels for epic inuman sessions.",
+    "A Pinoy barkada party deck with 600 calibrated prompts across 10 intensity levels. Play Never Have I Ever and Most Likely To for epic inuman sessions.",
   applicationName: "Tagay Ta",
   authors: [{ name: "Jed Mamosto", url: "https://jedmamosto.me" }],
   generator: "Next.js",
   keywords: [
     "Tagay Ta",
     "Never Have I Ever",
+    "Most Likely To",
+    "Pinoy Most Likely To",
+    "Barkada pointing game",
+    "Inuman voting game",
+    "Sino ang pinaka",
     "Pinoy Party Game",
     "Inuman Games",
     "Barkada Game",
@@ -66,9 +72,10 @@ export const metadata: Metadata = {
     canonical: "/",
   },
   openGraph: {
-    title: "Tagay Ta — Pinoy Barkada Party Deck & Drinking Game",
+    title:
+      "Tagay Ta — Pinoy Barkada Party Deck & Drinking Game (Never Have I Ever & Most Likely To)",
     description:
-      "Tagay Ta is the ultimate Pinoy barkada party deck. 500 calibrated Never Have I Ever prompts across 10 intensity levels for epic inuman sessions.",
+      "A Pinoy barkada party deck with 600 calibrated prompts across 10 intensity levels. Play Never Have I Ever and Most Likely To for epic inuman sessions.",
     url: "https://tagay-ta.vercel.app",
     siteName: "Tagay Ta",
     locale: "en_PH",
@@ -76,9 +83,10 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Tagay Ta — Pinoy Barkada Party Deck & Drinking Game",
+    title:
+      "Tagay Ta — Pinoy Barkada Party Deck & Drinking Game (Never Have I Ever & Most Likely To)",
     description:
-      "Tagay Ta is the ultimate Pinoy barkada party deck. 500 calibrated Never Have I Ever prompts across 10 intensity levels for epic inuman sessions.",
+      "A Pinoy barkada party deck with 600 calibrated prompts across 10 intensity levels. Play Never Have I Ever and Most Likely To for epic inuman sessions.",
     creator: "@jedmamosto",
   },
   robots: {
@@ -107,14 +115,21 @@ const jsonLd = {
       "@type": "WebApplication",
       "@id": "https://tagay-ta.vercel.app/#webapp",
       name: "Tagay Ta",
-      alternateName: "Tagay Ta — Pinoy Barkada Party Deck & Drinking Game",
+      alternateName:
+        "Tagay Ta — Pinoy Barkada Party Deck & Drinking Game (Never Have I Ever & Most Likely To)",
       url: "https://tagay-ta.vercel.app",
       applicationCategory: "GameApplication",
       operatingSystem: "All",
       browserRequirements: "Requires JavaScript. Requires HTML5.",
       description:
-        "Tagay Ta is the ultimate Pinoy barkada party deck. 500 calibrated Never Have I Ever prompts across 10 intensity levels for epic inuman sessions.",
-      genre: ["Party Game", "Drinking Game", "Card Game", "Social Game"],
+        "A Pinoy barkada party deck with 600 calibrated prompts across 10 intensity levels. Play Never Have I Ever and Most Likely To for epic inuman sessions.",
+      genre: [
+        "Party Game",
+        "Drinking Game",
+        "Card Game",
+        "Social Game",
+        "Voting Game",
+      ],
       inLanguage: ["en", "fil"],
       numberOfPlayers: "2+",
       author: {
@@ -131,29 +146,29 @@ const jsonLd = {
     {
       "@type": "HowTo",
       "@id": "https://tagay-ta.vercel.app/#howto",
-      name: "How to Play Tagay Ta: Pinoy Barkada Drinking Game",
+      name: "How to Play Tagay Ta: Pinoy Barkada Drinking Game (Never Have I Ever & Most Likely To)",
       description:
-        "Step-by-step instructions for playing Tagay Ta Never Have I Ever card game with friends during inuman sessions.",
+        "Step-by-step instructions for playing Tagay Ta party games with friends during inuman sessions.",
       step: [
         {
           "@type": "HowToStep",
-          name: "Gather the Barkada & Prepare Drinks",
-          text: "Sit in a circle with your group and prepare your drinks of choice—whether beer, mixed drinks with chaser, or non-alcoholic juice.",
+          name: "Gather the Barkada & Pick Game Mode",
+          text: "Sit in a circle. Switch between Never Have I Ever (500 cards) and Most Likely To (100 cards).",
         },
         {
           "@type": "HowToStep",
           name: "Choose Your Intensity Range",
-          text: "Use the intensity slider to calibrate your session from Level 1 (Chill Icebreakers) up to Level 10 (Walwalan & Deep Confessions).",
+          text: "Calibrate your session from Level 1 (Chill Icebreakers) up to Level 10 (Walwalan & Wild Truths).",
         },
         {
           "@type": "HowToStep",
-          name: "Pass and Read Aloud",
-          text: "Pass the device around. The active player reads the card out loud to the group.",
+          name: "Mode A: Never Have I Ever",
+          text: "Pass the phone around. Read the card out loud. Drink if guilty. Share the chismis!",
         },
         {
           "@type": "HowToStep",
-          name: "Drink If Guilty & Share the Story",
-          text: "Anyone who has done the act takes a drink (tagay). If only one person drinks, they have to share the backstory!",
+          name: "Mode B: Most Likely To",
+          text: "Read the prompt. Count down 3-2-1 together. Point fingers simultaneously. Most votes drinks with 10s defense!",
         },
       ],
     },
@@ -166,7 +181,31 @@ const jsonLd = {
           name: "How many players can play Tagay Ta?",
           acceptedAnswer: {
             "@type": "Answer",
-            text: "You can play with 2 to 20+ people. Pass one phone around the table. Everyone plays together without installing anything.",
+            text: "Play with 2 to 20 or more people. Pass one phone around. No app installation required.",
+          },
+        },
+        {
+          "@type": "Question",
+          name: "What game modes are available in Tagay Ta?",
+          acceptedAnswer: {
+            "@type": "Answer",
+            text: "You can play Never Have I Ever (500 cards) and Most Likely To (100 cards).",
+          },
+        },
+        {
+          "@type": "Question",
+          name: "How do we play the Most Likely To mode?",
+          acceptedAnswer: {
+            "@type": "Answer",
+            text: "Read the card aloud. Count down 3-2-1 together. Point fingers simultaneously. Most votes drinks!",
+          },
+        },
+        {
+          "@type": "Question",
+          name: "Can we switch modes in the middle of a game?",
+          acceptedAnswer: {
+            "@type": "Answer",
+            text: "Yes. Tap the mode button in the top navigation bar anytime. It switches decks instantly.",
           },
         },
         {
@@ -174,7 +213,7 @@ const jsonLd = {
           name: "Can we create our own custom cards?",
           acceptedAnswer: {
             "@type": "Answer",
-            text: "Yes! Tap the Custom Cards button to write your own prompts. Pick an intensity level and category. Your cards save right in your browser.",
+            text: "Yes! Tap Custom Cards to write your own prompts. Cards save directly in your browser.",
           },
         },
         {
@@ -182,7 +221,7 @@ const jsonLd = {
           name: "Is Tagay Ta free to play?",
           acceptedAnswer: {
             "@type": "Answer",
-            text: "Yes, it is 100% free. There are no paywalls, sign-ups, or subscriptions. All 500 cards and 10 levels are unlocked immediately.",
+            text: "Yes, 100% free. No paywalls, ads, or sign-ups. All 600 cards are unlocked immediately.",
           },
         },
         {
@@ -190,15 +229,15 @@ const jsonLd = {
           name: "Can we play Tagay Ta online or remotely?",
           acceptedAnswer: {
             "@type": "Answer",
-            text: "Yes! Share your screen on Discord, Zoom, or Google Meet. Friends can drink along from their own homes.",
+            text: "Yes! Share your screen on Discord, Zoom, or Google Meet. Friends drink together online.",
           },
         },
         {
           "@type": "Question",
-          name: "What happens when all 500 cards are played?",
+          name: "What happens when all cards are played?",
           acceptedAnswer: {
             "@type": "Answer",
-            text: "The deck shuffles automatically when you reach the end. You get a brand-new card order every single game.",
+            text: "The deck shuffles automatically when finished. You get a fresh card sequence every session.",
           },
         },
       ],

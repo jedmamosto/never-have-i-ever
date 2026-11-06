@@ -41,7 +41,7 @@ export default function HomePage() {
   const [isModeDropdownOpen, setIsModeDropdownOpen] = useState(false);
   const [copiedLink, setCopiedLink] = useState(false);
   const [gameMode, setGameMode] = useState<GameMode>('never-have-i-ever');
-  const { customCards, addCustomCard, deleteCustomCard } = useCustomCards();
+  const { customCards, addCustomCard, deleteCustomCard } = useCustomCards(gameMode);
 
   const {
     intensityRange,
@@ -58,7 +58,8 @@ export default function HomePage() {
     jumpToCard,
   } = useGameDeck(
     customCards,
-    isCustomModalOpen || isGcashModalOpen || isModeTeaserOpen || !isPlaying
+    isCustomModalOpen || isGcashModalOpen || isModeTeaserOpen || !isPlaying,
+    gameMode
   );
 
   // Close mode dropdown on Escape
@@ -100,7 +101,7 @@ export default function HomePage() {
   const handleShareGame = async () => {
     const shareData = {
       title: 'Tagay Ta — Pinoy Barkada Party Deck & Drinking Game',
-      text: 'Pass & play Never Have I Ever cards with 500 calibrated Pinoy prompts! Play now:',
+      text: 'Play Never Have I Ever and Most Likely To with 600 calibrated Pinoy prompts! Play now:',
       url: typeof window !== 'undefined' ? window.location.href : 'https://tagay-ta.vercel.app',
     };
     if (typeof navigator !== 'undefined' && navigator.share) {
@@ -144,8 +145,17 @@ export default function HomePage() {
               className="brutal-interactive bg-surface-container-low hover:bg-surface-container text-on-surface border-[2px] border-on-surface shadow-brutal-sm rounded-full px-2.5 py-1.5 min-h-[36px] sm:min-h-[34px] font-mono text-[11px] sm:text-label-code uppercase inline-flex items-center gap-1 whitespace-nowrap focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-on-surface"
             >
               <span className="truncate max-w-[85px] sm:max-w-none">
-                <span className="hidden sm:inline">Never Have I Ever</span>
-                <span className="sm:hidden">NHIE</span>
+                {gameMode === 'never-have-i-ever' ? (
+                  <>
+                    <span className="hidden sm:inline">Never Have I Ever</span>
+                    <span className="sm:hidden">NHIE</span>
+                  </>
+                ) : (
+                  <>
+                    <span className="hidden sm:inline">Most Likely To</span>
+                    <span className="sm:hidden">MLT</span>
+                  </>
+                )}
               </span>
               <ChevronDownIcon
                 className={`w-3 h-3 text-on-surface shrink-0 transition-transform duration-150 ${
@@ -170,7 +180,7 @@ export default function HomePage() {
                     Game Modes
                   </div>
 
-                  {/* Mode 1: Never Have I Ever (Active) */}
+                  {/* Mode 1: Never Have I Ever */}
                   <button
                     type="button"
                     role="option"
@@ -179,7 +189,9 @@ export default function HomePage() {
                       setGameMode('never-have-i-ever');
                       setIsModeDropdownOpen(false);
                     }}
-                    className="w-full text-left px-3 py-2 flex items-center justify-between gap-2 hover:bg-surface-container transition-colors"
+                    className={`w-full text-left px-3 py-2 flex items-center justify-between gap-2 hover:bg-surface-container transition-colors ${
+                      gameMode === 'never-have-i-ever' ? 'bg-surface-container/60' : ''
+                    }`}
                   >
                     <div className="min-w-0">
                       <span className="font-display font-bold text-xs sm:text-sm text-on-surface block truncate">
@@ -189,22 +201,25 @@ export default function HomePage() {
                         ● 500 Cards Active
                       </span>
                     </div>
-                    <span className="px-1.5 py-0.5 rounded-full bg-secondary-container border border-on-surface font-mono text-[9px] font-bold text-on-surface uppercase shrink-0">
-                      Active
-                    </span>
+                    {gameMode === 'never-have-i-ever' && (
+                      <span className="px-1.5 py-0.5 rounded-full bg-secondary-container border border-on-surface font-mono text-[9px] font-bold text-on-surface uppercase shrink-0">
+                        Active
+                      </span>
+                    )}
                   </button>
 
-                  {/* Mode 2: Most Likely To... (Teaser) */}
+                  {/* Mode 2: Most Likely To... */}
                   <button
                     type="button"
                     role="option"
                     aria-selected={gameMode === 'most-likely-to'}
                     onClick={() => {
+                      setGameMode('most-likely-to');
                       setIsModeDropdownOpen(false);
-                      setIsModeTeaserOpen(true);
-                      trackModeTeaserOpen('most-likely-to');
                     }}
-                    className="w-full text-left px-3 py-2 flex items-center justify-between gap-2 hover:bg-primary-container/20 transition-colors border-t border-on-surface/10"
+                    className={`w-full text-left px-3 py-2 flex items-center justify-between gap-2 hover:bg-surface-container transition-colors border-t border-on-surface/10 ${
+                      gameMode === 'most-likely-to' ? 'bg-surface-container/60' : ''
+                    }`}
                   >
                     <div className="min-w-0">
                       <div className="flex items-center gap-1">
@@ -213,13 +228,15 @@ export default function HomePage() {
                         </span>
                         <FlameIcon className="w-3.5 h-3.5 text-primary shrink-0" />
                       </div>
-                      <span className="font-mono text-[10px] text-on-surface-variant block">
-                        Point &amp; Tagay • Coming Soon
+                      <span className="font-mono text-[10px] text-tertiary font-bold block">
+                        ● 100 Cards Active
                       </span>
                     </div>
-                    <span className="px-1.5 py-0.5 rounded-full bg-primary-container border border-on-surface font-mono text-[9px] font-bold text-on-surface uppercase shrink-0">
-                      Teaser
-                    </span>
+                    {gameMode === 'most-likely-to' && (
+                      <span className="px-1.5 py-0.5 rounded-full bg-primary-container border border-on-surface font-mono text-[9px] font-bold text-on-surface uppercase shrink-0">
+                        Active
+                      </span>
+                    )}
                   </button>
                 </div>
               </>
@@ -280,13 +297,19 @@ export default function HomePage() {
             {/* Title & Keyword-Aligned Subtitle */}
             <div className="space-y-2">
               <span className="font-mono text-label-code uppercase tracking-wider text-primary font-bold block">
-                TAGAY TA // 500 CALIBRATED PROMPTS
+                {gameMode === 'most-likely-to'
+                  ? 'TAGAY TA // 100 CALIBRATED PROMPTS'
+                  : 'TAGAY TA // 500 CALIBRATED PROMPTS'}
               </span>
               <h1 className="font-display font-bold text-headline-md sm:text-display-sm tracking-[-0.02em] text-on-surface leading-tight">
-                Tagay Ta: Pinoy Barkada Party Deck &amp; Drinking Game
+                {gameMode === 'most-likely-to'
+                  ? 'Tagay Ta: Most Likely To Party Deck'
+                  : 'Tagay Ta: Pinoy Barkada Party Deck & Drinking Game'}
               </h1>
               <p className="font-sans text-body-md text-on-surface-variant leading-relaxed">
-                The Pinoy drinking game for your barkada inuman. Pick an intensity, pass the phone around, and drink if guilty.
+                {gameMode === 'most-likely-to'
+                  ? 'The Pinoy drinking game for your barkada inuman. Count down 3-2-1, point at who is most likely, and take a drink!'
+                  : 'The Pinoy drinking game for your barkada inuman. Pick an intensity, pass the phone around, and drink if guilty.'}
               </p>
             </div>
 
@@ -386,10 +409,16 @@ export default function HomePage() {
                 </h2>
               </div>
               <p className="font-sans text-sm sm:text-body-md text-on-surface-variant leading-relaxed">
-                <strong>Tagay Ta</strong> means &quot;let&apos;s drink!&quot; in Visayan. It is a Pinoy drinking game made for barkada inuman nights and house parties. We took <strong>Never Have I Ever</strong> and loaded 500 cards inside.
+                <strong>Tagay Ta</strong> means &quot;let&apos;s drink!&quot; in Visayan. It is built for real barkada inuman nights.
               </p>
               <p className="font-sans text-sm sm:text-body-md text-on-surface-variant leading-relaxed">
-                No boring generic questions here. Expect real school bloopers, workplace chismis, and late-night dating truths. No cards to lose. No app download needed. Just open your browser and pass the phone around.
+                We packed two party games inside. Play <strong>Never Have I Ever</strong> (500 cards) and <strong>Most Likely To</strong> (100 cards). That gives your table 600 calibrated prompts total.
+              </p>
+              <p className="font-sans text-sm sm:text-body-md text-on-surface-variant leading-relaxed">
+                No boring cards. Expect real campus bloopers, ambag drama, workplace tea, and 2 AM dating truths.
+              </p>
+              <p className="font-sans text-sm sm:text-body-md text-on-surface-variant leading-relaxed">
+                No app download needed. Grab your pulutan, open your browser, and pass the phone around.
               </p>
             </article>
 
@@ -397,52 +426,125 @@ export default function HomePage() {
             <article
               id="how-to-play"
               aria-labelledby="how-to-play-heading"
-              className="bg-surface-container-lowest border-[2.5px] border-on-surface rounded-card shadow-brutal p-4 sm:p-6 space-y-4"
+              className="bg-surface-container-lowest border-[2.5px] border-on-surface rounded-card shadow-brutal p-4 sm:p-6 space-y-5"
             >
-              <h2 id="how-to-play-heading" className="font-display font-bold text-title sm:text-headline-md tracking-[-0.02em]">
-                How to Play Never Have I Ever (Pinoy Edition)
-              </h2>
-              <p className="font-sans text-sm sm:text-body-md text-on-surface-variant leading-relaxed">
-                Playing <strong>Never Have I Ever</strong> with your barkada is fast and simple:
-              </p>
-              <ol className="space-y-3 font-sans text-sm sm:text-body-md text-on-surface-variant">
-                <li className="flex items-start gap-3 p-3 rounded-control bg-surface border border-on-surface/20">
-                  <span className="font-mono font-bold text-xs px-2 py-0.5 rounded-full bg-primary-container border border-on-surface text-on-surface shrink-0">
-                    01
+              <div>
+                <h2 id="how-to-play-heading" className="font-display font-bold text-title sm:text-headline-md tracking-[-0.02em]">
+                  How to Play Tagay Ta
+                </h2>
+                <p className="font-sans text-sm sm:text-body-md text-on-surface-variant leading-relaxed mt-1">
+                  Tagay Ta features two Pinoy party games. Pick a mode and gather your circle:
+                </p>
+              </div>
+
+              {/* Mode A: Never Have I Ever */}
+              <div className="space-y-3 pt-1 border-t border-on-surface/10">
+                <div className="flex items-center gap-2">
+                  <span className="px-2 py-0.5 rounded-full bg-secondary-container border border-on-surface font-mono text-[11px] font-bold text-on-surface uppercase">
+                    Mode 1
                   </span>
-                  <div>
-                    <strong className="text-on-surface block mb-0.5">Gather the Barkada &amp; Drinks:</strong>
-                    Sit in a circle. Grab cold beer, mixed drinks, juice, or iced tea.
-                  </div>
-                </li>
-                <li className="flex items-start gap-3 p-3 rounded-control bg-surface border border-on-surface/20">
-                  <span className="font-mono font-bold text-xs px-2 py-0.5 rounded-full bg-primary-container border border-on-surface text-on-surface shrink-0">
-                    02
+                  <h3 className="font-display font-bold text-sm sm:text-base text-on-surface">
+                    Never Have I Ever (500 Cards)
+                  </h3>
+                </div>
+                <ol className="space-y-2.5 font-sans text-sm sm:text-body-md text-on-surface-variant">
+                  <li className="flex items-start gap-2.5 p-3 rounded-control bg-surface border border-on-surface/20">
+                    <span className="font-mono font-bold text-xs px-2 py-0.5 rounded-full bg-primary-container border border-on-surface text-on-surface shrink-0">
+                      01
+                    </span>
+                    <div>
+                      <strong className="text-on-surface block mb-0.5">Circle Up &amp; Pour:</strong>
+                      Sit in a circle. Grab cold beer, mixed drinks, juice, or iced water.
+                    </div>
+                  </li>
+                  <li className="flex items-start gap-2.5 p-3 rounded-control bg-surface border border-on-surface/20">
+                    <span className="font-mono font-bold text-xs px-2 py-0.5 rounded-full bg-primary-container border border-on-surface text-on-surface shrink-0">
+                      02
+                    </span>
+                    <div>
+                      <strong className="text-on-surface block mb-0.5">Pass &amp; Read Aloud:</strong>
+                      Read the card on screen out loud. Pass the phone to your right.
+                    </div>
+                  </li>
+                  <li className="flex items-start gap-2.5 p-3 rounded-control bg-surface border border-on-surface/20">
+                    <span className="font-mono font-bold text-xs px-2 py-0.5 rounded-full bg-primary-container border border-on-surface text-on-surface shrink-0">
+                      03
+                    </span>
+                    <div>
+                      <strong className="text-on-surface block mb-0.5">Drink If Guilty:</strong>
+                      Take a drink if you did the prompt.
+                    </div>
+                  </li>
+                  <li className="flex items-start gap-2.5 p-3 rounded-control bg-surface border border-on-surface/20">
+                    <span className="font-mono font-bold text-xs px-2 py-0.5 rounded-full bg-primary-container border border-on-surface text-on-surface shrink-0">
+                      04
+                    </span>
+                    <div>
+                      <strong className="text-on-surface block mb-0.5">Spill the Backstory:</strong>
+                      If only one person drinks, they must tell the whole story!
+                    </div>
+                  </li>
+                </ol>
+              </div>
+
+              {/* Mode B: Most Likely To */}
+              <div className="space-y-3 pt-3 border-t border-on-surface/10">
+                <div className="flex items-center gap-2">
+                  <span className="px-2 py-0.5 rounded-full bg-primary-container border border-on-surface font-mono text-[11px] font-bold text-on-surface uppercase">
+                    Mode 2
                   </span>
-                  <div>
-                    <strong className="text-on-surface block mb-0.5">Pick Your Intensity Level:</strong>
-                    Use the slider to pick your intensity from Level 1 to Level 10.
-                  </div>
-                </li>
-                <li className="flex items-start gap-3 p-3 rounded-control bg-surface border border-on-surface/20">
-                  <span className="font-mono font-bold text-xs px-2 py-0.5 rounded-full bg-primary-container border border-on-surface text-on-surface shrink-0">
-                    03
-                  </span>
-                  <div>
-                    <strong className="text-on-surface block mb-0.5">Pass &amp; Read Out Loud:</strong>
-                    Take turns reading the card on screen. Then pass the phone to your right.
-                  </div>
-                </li>
-                <li className="flex items-start gap-3 p-3 rounded-control bg-surface border border-on-surface/20">
-                  <span className="font-mono font-bold text-xs px-2 py-0.5 rounded-full bg-primary-container border border-on-surface text-on-surface shrink-0">
-                    04
-                  </span>
-                  <div>
-                    <strong className="text-on-surface block mb-0.5">Drink If You Are Guilty:</strong>
-                    Take a sip if you did it. If only one person drinks, spill the chismis!
-                  </div>
-                </li>
-              </ol>
+                  <h3 className="font-display font-bold text-sm sm:text-base text-on-surface">
+                    Most Likely To (100 Cards)
+                  </h3>
+                </div>
+                <ol className="space-y-2.5 font-sans text-sm sm:text-body-md text-on-surface-variant">
+                  <li className="flex items-start gap-2.5 p-3 rounded-control bg-surface border border-on-surface/20">
+                    <span className="font-mono font-bold text-xs px-2 py-0.5 rounded-full bg-primary-container border border-on-surface text-on-surface shrink-0">
+                      01
+                    </span>
+                    <div>
+                      <strong className="text-on-surface block mb-0.5">Read Prompt:</strong>
+                      Read the Most Likely To prompt loudly to everyone.
+                    </div>
+                  </li>
+                  <li className="flex items-start gap-2.5 p-3 rounded-control bg-surface border border-on-surface/20">
+                    <span className="font-mono font-bold text-xs px-2 py-0.5 rounded-full bg-primary-container border border-on-surface text-on-surface shrink-0">
+                      02
+                    </span>
+                    <div>
+                      <strong className="text-on-surface block mb-0.5">3-2-1 Table Countdown:</strong>
+                      Count down three, two, one together out loud.
+                    </div>
+                  </li>
+                  <li className="flex items-start gap-2.5 p-3 rounded-control bg-surface border border-on-surface/20">
+                    <span className="font-mono font-bold text-xs px-2 py-0.5 rounded-full bg-primary-container border border-on-surface text-on-surface shrink-0">
+                      03
+                    </span>
+                    <div>
+                      <strong className="text-on-surface block mb-0.5">Point Together:</strong>
+                      On three, point directly at whoever fits the card best.
+                    </div>
+                  </li>
+                  <li className="flex items-start gap-2.5 p-3 rounded-control bg-surface border border-on-surface/20">
+                    <span className="font-mono font-bold text-xs px-2 py-0.5 rounded-full bg-primary-container border border-on-surface text-on-surface shrink-0">
+                      04
+                    </span>
+                    <div>
+                      <strong className="text-on-surface block mb-0.5">Highest Votes Drinks:</strong>
+                      Whoever receives the most fingers pointing at them takes a tagay.
+                    </div>
+                  </li>
+                  <li className="flex items-start gap-2.5 p-3 rounded-control bg-surface border border-on-surface/20">
+                    <span className="font-mono font-bold text-xs px-2 py-0.5 rounded-full bg-primary-container border border-on-surface text-on-surface shrink-0">
+                      05
+                    </span>
+                    <div>
+                      <strong className="text-on-surface block mb-0.5">10-Second Right of Defense:</strong>
+                      The accused has 10 seconds to defend their innocence!
+                    </div>
+                  </li>
+                </ol>
+              </div>
             </article>
 
             {/* Section 3: 10 Intensity Levels */}
@@ -455,7 +557,7 @@ export default function HomePage() {
                 10 Intensity Levels for Any Crowd
               </h2>
               <p className="font-sans text-sm sm:text-body-md text-on-surface-variant leading-relaxed">
-                Not every inuman has the same vibe. Tagay Ta splits 500 cards across 10 levels:
+                Not every inuman has the same energy. Both game decks scale across 10 intensity levels:
               </p>
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
                 <div className="p-3.5 sm:p-4 rounded-control bg-surface border border-on-surface space-y-2 flex flex-col justify-between">
@@ -468,7 +570,7 @@ export default function HomePage() {
                       Icebreakers &amp; School Days
                     </strong>
                     <p className="font-sans text-xs text-on-surface-variant leading-relaxed">
-                      School bloopers, childhood memories, commute struggles, and funny Pinoy habits. Safe to play with family, workmates, or new friends.
+                      Campus bloopers, childhood memories, commute woes, and funny Pinoy habits. Safe for family, coworkers, or new friends.
                     </p>
                   </div>
                 </div>
@@ -483,7 +585,7 @@ export default function HomePage() {
                       Office Tea &amp; Situationships
                     </strong>
                     <p className="font-sans text-xs text-on-surface-variant leading-relaxed">
-                      Workplace confessions, secret crushes, messy group chats, and weekend drinking stories. Great for close barkadas having beer and pulutan.
+                      Workplace confessions, secret crushes, messy group chats, and inuman memories. Great for close barkadas having beer and pulutan.
                     </p>
                   </div>
                 </div>
@@ -498,7 +600,7 @@ export default function HomePage() {
                       Walwal &amp; Wild Truths
                     </strong>
                     <p className="font-sans text-xs text-on-surface-variant leading-relaxed">
-                      Crazy party nights, secret exes, and confessions you rarely tell anyone. Play this only with friends you trust 100%.
+                      Wild party nights, secret exes, and unfiltered late-night confessions. Play only with friends you trust 100%.
                     </p>
                   </div>
                 </div>
@@ -515,31 +617,49 @@ export default function HomePage() {
                 Pinoy Inuman House Rules
               </h2>
               <p className="font-sans text-sm sm:text-body-md text-on-surface-variant leading-relaxed">
-                Make your inuman game louder with these fun Pinoy house rules:
+                Make your inuman louder with these classic table rules:
               </p>
               <ul className="space-y-2.5 font-sans text-sm sm:text-body-md text-on-surface-variant">
                 <li className="flex items-start gap-2">
                   <span className="font-mono text-primary font-bold">🍺</span>
                   <div>
-                    <strong className="text-on-surface">The Solo Drinker Tax:</strong> Only one person drank? They must tell the whole story to the group.
+                    <strong className="text-on-surface">The Solo Drinker Tax (NHIE):</strong> Only one person drank? They must spill the backstory to the table.
                   </div>
                 </li>
                 <li className="flex items-start gap-2">
                   <span className="font-mono text-primary font-bold">🍻</span>
                   <div>
-                    <strong className="text-on-surface">The Dry Question Penalty:</strong> Did nobody drink? The card reader takes a sip for pulling a boring card.
+                    <strong className="text-on-surface">The Dry Question Penalty:</strong> Nobody drank or voted? The reader takes a penalty sip.
+                  </div>
+                </li>
+                <li className="flex items-start gap-2">
+                  <span className="font-mono text-primary font-bold">🥂</span>
+                  <div>
+                    <strong className="text-on-surface">The Duel Clink (MLT):</strong> Tied vote count? Both players clink glasses and take a tagay together.
+                  </div>
+                </li>
+                <li className="flex items-start gap-2">
+                  <span className="font-mono text-primary font-bold">🎯</span>
+                  <div>
+                    <strong className="text-on-surface">The Firing Squad (MLT):</strong> Unanimous 100% vote? That player must take a double shot!
+                  </div>
+                </li>
+                <li className="flex items-start gap-2">
+                  <span className="font-mono text-primary font-bold">⚖️</span>
+                  <div>
+                    <strong className="text-on-surface">The 10-Second Right of Defense (MLT):</strong> Accused players get 10 seconds to plead innocence. Convince the table to transfer the tagay!
                   </div>
                 </li>
                 <li className="flex items-start gap-2">
                   <span className="font-mono text-primary font-bold">🥤</span>
                   <div>
-                    <strong className="text-on-surface">The 10-Finger Rule (No Booze):</strong> Playing without alcohol? Put up 10 fingers. Drop one finger each time you are guilty. The last player standing wins!
+                    <strong className="text-on-surface">The 10-Finger Rule (No Booze):</strong> Playing sober? Put up 10 fingers. Drop one finger per guilty card. Last standing wins.
                   </div>
                 </li>
                 <li className="flex items-start gap-2">
                   <span className="font-mono text-primary font-bold">💧</span>
                   <div>
-                    <strong className="text-on-surface">Drink Responsibly:</strong> Pace your tagay. Eat your pulutan, drink plenty of water, and never drink and drive.
+                    <strong className="text-on-surface">Drink Responsibly:</strong> Pace your drinks. Eat your pulutan, drink plenty of water, and never drink and drive.
                   </div>
                 </li>
               </ul>
@@ -562,7 +682,43 @@ export default function HomePage() {
                   </summary>
                   <div className="px-3.5 pb-3.5 pt-0">
                     <p className="font-sans text-xs sm:text-sm text-on-surface-variant leading-relaxed border-t border-on-surface/10 pt-2.5">
-                      You can play with 2 to 20+ people. Pass one phone around the table. Everyone plays together without installing anything.
+                      Play with 2 to 20 or more people. Pass one phone around. No app installation required.
+                    </p>
+                  </div>
+                </details>
+
+                <details name="faq" className="group border border-on-surface/20 rounded-control bg-surface overflow-hidden [&_summary::-webkit-details-marker]:hidden transition-colors">
+                  <summary className="flex items-center justify-between font-display font-bold text-xs sm:text-sm text-on-surface cursor-pointer select-none min-h-[44px] p-3.5 hover:bg-surface-container/50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-on-surface focus-visible:ring-inset transition-colors">
+                    <span>What game modes are available in Tagay Ta?</span>
+                    <ChevronDownIcon className="w-4 h-4 text-on-surface shrink-0 transition-transform duration-200 group-open:rotate-180" />
+                  </summary>
+                  <div className="px-3.5 pb-3.5 pt-0">
+                    <p className="font-sans text-xs sm:text-sm text-on-surface-variant leading-relaxed border-t border-on-surface/10 pt-2.5">
+                      Play Never Have I Ever (500 cards) and Most Likely To (100 cards). That is 600 calibrated prompts total.
+                    </p>
+                  </div>
+                </details>
+
+                <details name="faq" className="group border border-on-surface/20 rounded-control bg-surface overflow-hidden [&_summary::-webkit-details-marker]:hidden transition-colors">
+                  <summary className="flex items-center justify-between font-display font-bold text-xs sm:text-sm text-on-surface cursor-pointer select-none min-h-[44px] p-3.5 hover:bg-surface-container/50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-on-surface focus-visible:ring-inset transition-colors">
+                    <span>How do we play the Most Likely To mode?</span>
+                    <ChevronDownIcon className="w-4 h-4 text-on-surface shrink-0 transition-transform duration-200 group-open:rotate-180" />
+                  </summary>
+                  <div className="px-3.5 pb-3.5 pt-0">
+                    <p className="font-sans text-xs sm:text-sm text-on-surface-variant leading-relaxed border-t border-on-surface/10 pt-2.5">
+                      Read the prompt aloud. Count down 3-2-1 together. Point fingers simultaneously. The person with the most votes drinks!
+                    </p>
+                  </div>
+                </details>
+
+                <details name="faq" className="group border border-on-surface/20 rounded-control bg-surface overflow-hidden [&_summary::-webkit-details-marker]:hidden transition-colors">
+                  <summary className="flex items-center justify-between font-display font-bold text-xs sm:text-sm text-on-surface cursor-pointer select-none min-h-[44px] p-3.5 hover:bg-surface-container/50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-on-surface focus-visible:ring-inset transition-colors">
+                    <span>Can we switch modes in the middle of a game?</span>
+                    <ChevronDownIcon className="w-4 h-4 text-on-surface shrink-0 transition-transform duration-200 group-open:rotate-180" />
+                  </summary>
+                  <div className="px-3.5 pb-3.5 pt-0">
+                    <p className="font-sans text-xs sm:text-sm text-on-surface-variant leading-relaxed border-t border-on-surface/10 pt-2.5">
+                      Yes. Tap the mode button in the top navigation bar anytime. It switches decks instantly.
                     </p>
                   </div>
                 </details>
@@ -574,7 +730,7 @@ export default function HomePage() {
                   </summary>
                   <div className="px-3.5 pb-3.5 pt-0">
                     <p className="font-sans text-xs sm:text-sm text-on-surface-variant leading-relaxed border-t border-on-surface/10 pt-2.5">
-                      Yes! Tap the &quot;Custom Cards&quot; button to write your own prompts. Pick an intensity level and category. Your cards save right in your browser.
+                      Yes! Tap &quot;Custom Cards&quot; to write your own prompts. Cards save directly in your browser.
                     </p>
                   </div>
                 </details>
@@ -586,7 +742,7 @@ export default function HomePage() {
                   </summary>
                   <div className="px-3.5 pb-3.5 pt-0">
                     <p className="font-sans text-xs sm:text-sm text-on-surface-variant leading-relaxed border-t border-on-surface/10 pt-2.5">
-                      Yes, it is 100% free. There are no paywalls, sign-ups, or subscriptions. All 500 cards and 10 levels are unlocked immediately.
+                      Yes, 100% free. No paywalls, ads, or sign-ups. All 600 cards are unlocked immediately.
                     </p>
                   </div>
                 </details>
@@ -598,19 +754,19 @@ export default function HomePage() {
                   </summary>
                   <div className="px-3.5 pb-3.5 pt-0">
                     <p className="font-sans text-xs sm:text-sm text-on-surface-variant leading-relaxed border-t border-on-surface/10 pt-2.5">
-                      Yes! Share your screen on Discord, Zoom, or Google Meet. Friends can drink along from their own homes.
+                      Yes! Share your screen on Discord, Zoom, or Google Meet. Friends drink together online.
                     </p>
                   </div>
                 </details>
 
                 <details name="faq" className="group border border-on-surface/20 rounded-control bg-surface overflow-hidden [&_summary::-webkit-details-marker]:hidden transition-colors">
                   <summary className="flex items-center justify-between font-display font-bold text-xs sm:text-sm text-on-surface cursor-pointer select-none min-h-[44px] p-3.5 hover:bg-surface-container/50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-on-surface focus-visible:ring-inset transition-colors">
-                    <span>What happens when all 500 cards are played?</span>
+                    <span>What happens when all cards are played?</span>
                     <ChevronDownIcon className="w-4 h-4 text-on-surface shrink-0 transition-transform duration-200 group-open:rotate-180" />
                   </summary>
                   <div className="px-3.5 pb-3.5 pt-0">
                     <p className="font-sans text-xs sm:text-sm text-on-surface-variant leading-relaxed border-t border-on-surface/10 pt-2.5">
-                      The deck shuffles automatically when you reach the end. You get a brand-new card order every single game.
+                      The deck shuffles automatically when finished. You get a fresh card sequence every session.
                     </p>
                   </div>
                 </details>
@@ -677,6 +833,7 @@ export default function HomePage() {
               totalCards={totalCards}
               theme={theme}
               direction={direction}
+              gameMode={gameMode}
               onNext={nextCard}
               onPrev={prevCard}
               onOpenCustomModal={() => setIsCustomModalOpen(true)}

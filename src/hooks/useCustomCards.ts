@@ -1,10 +1,13 @@
 'use client';
 
 import { useState, useEffect, useCallback } from 'react';
-import type { IntensityLevel, QuestionCard } from '../types/game';
+import type { GameMode, IntensityLevel, QuestionCard } from '../types/game';
 import { getTierForLevel } from '../lib/theme';
 
-const STORAGE_KEY = 'nhie_custom_cards_v1';
+const STORAGE_KEYS: Record<GameMode, string> = {
+  'never-have-i-ever': 'nhie_custom_cards_v1',
+  'most-likely-to': 'mlt_custom_cards_v1',
+};
 
 export interface NewCustomCardInput {
   text: string;
@@ -15,7 +18,9 @@ export interface NewCustomCardInput {
 function formatPromptText(rawText: string): string {
   const stripped = rawText
     .trim()
+    .replace(/^(who('?s|\s+is)\s+)?most\s+likely\s+to[\s.,:;!?\-—]*/i, '')
     .replace(/^never\s+have\s+i\s+ever[\s.,:;!?\-—]*/i, '')
+    .replace(/^sino\s+ang\s+(pinaka-?posibleng|pinaka\s+posibleng|pinaka)[\s.,:;!?\-—]*/i, '')
     .trim();
 
   if (!stripped) return '';
@@ -25,13 +30,14 @@ function formatPromptText(rawText: string): string {
   return hasTerminalPunctuation ? capitalized : `${capitalized}.`;
 }
 
-export function useCustomCards() {
+export function useCustomCards(mode: GameMode = 'never-have-i-ever') {
+  const storageKey = STORAGE_KEYS[mode];
   const [customCards, setCustomCards] = useState<QuestionCard[]>([]);
   const [isHydrated, setIsHydrated] = useState(false);
 
   useEffect(() => {
     try {
-      const raw = window.localStorage.getItem(STORAGE_KEY);
+      const raw = window.localStorage.getItem(storageKey);
       if (raw) {
         const parsed = JSON.parse(raw) as unknown;
         if (Array.isArray(parsed)) {
@@ -44,14 +50,17 @@ export function useCustomCards() {
               typeof (item as QuestionCard).level === 'number'
           );
           setCustomCards(validCards);
+          return;
         }
       }
+      setCustomCards([]);
     } catch {
       // Ignore malformed localStorage entries and fall back to empty array
+      setCustomCards([]);
     } finally {
       setIsHydrated(true);
     }
-  }, []);
+  }, [storageKey]);
 
   const addCustomCard = useCallback((input: NewCustomCardInput): QuestionCard => {
     const cleanedText = formatPromptText(input.text);
@@ -70,7 +79,7 @@ export function useCustomCards() {
     setCustomCards((prev) => {
       const updated = [newCard, ...prev];
       try {
-        window.localStorage.setItem(STORAGE_KEY, JSON.stringify(updated));
+        window.localStorage.setItem(storageKey, JSON.stringify(updated));
       } catch {
         // Ignore storage quota errors
       }
@@ -78,19 +87,19 @@ export function useCustomCards() {
     });
 
     return newCard;
-  }, []);
+  }, [storageKey]);
 
   const deleteCustomCard = useCallback((id: string): void => {
     setCustomCards((prev) => {
       const updated = prev.filter((card) => card.id !== id);
       try {
-        window.localStorage.setItem(STORAGE_KEY, JSON.stringify(updated));
+        window.localStorage.setItem(storageKey, JSON.stringify(updated));
       } catch {
         // Ignore storage errors
       }
       return updated;
     });
-  }, []);
+  }, [storageKey]);
 
   return {
     customCards,

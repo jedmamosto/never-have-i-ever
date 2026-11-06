@@ -173,7 +173,7 @@ export function ModeTeaserModal({
 
             <div className="py-2">
               <span className="font-mono text-xs uppercase tracking-wider text-on-surface-variant block mb-1">
-                SINO ANG PINAKA-POSIBLENG...
+                MOST LIKELY TO...
               </span>
               <p className="font-display font-bold text-title sm:text-headline-sm text-on-surface leading-snug">
                 &ldquo;Mag-text sa ex pagkatapos ng tatlong tagay habang sinasabing

@@ -1,8 +1,9 @@
 'use client';
 
-import { useState, useEffect, useMemo, useCallback } from 'react';
-import type { IntensityLevel, IntensityRange, QuestionCard, TierThemeTokens } from '../types/game';
+import { useState, useEffect, useMemo, useCallback, useRef } from 'react';
+import type { GameMode, IntensityLevel, IntensityRange, QuestionCard, TierThemeTokens } from '../types/game';
 import { INITIAL_QUESTIONS } from '../data/questions';
+import { MOST_LIKELY_TO_QUESTIONS } from '../data/most-likely-to';
 import { getThemeForLevel } from '../lib/theme';
 import { createNonRepeatingOrder } from '../lib/shuffle';
 import {
@@ -20,7 +21,11 @@ function filterQuestionsByRange(
   return allCards.filter((q) => q.level >= min && q.level <= max);
 }
 
-export function useGameDeck(customCards: QuestionCard[], isModalOpen = false) {
+export function useGameDeck(
+  customCards: QuestionCard[],
+  isModalOpen = false,
+  mode: GameMode = 'never-have-i-ever'
+) {
   const [intensityRange, setIntensityRangeState] = useState<IntensityRange>({
     min: 1,
     max: 10,
@@ -28,8 +33,16 @@ export function useGameDeck(customCards: QuestionCard[], isModalOpen = false) {
   const [direction, setDirection] = useState<'next' | 'prev' | 'idle'>('idle');
   const [stagedCard, setStagedCard] = useState<QuestionCard | null>(null);
 
+  const baseQuestions = useMemo(() => {
+    return mode === 'most-likely-to' ? MOST_LIKELY_TO_QUESTIONS : INITIAL_QUESTIONS;
+  }, [mode]);
+
   const [deckOrder, setDeckOrder] = useState<string[]>(() =>
-    filterQuestionsByRange(INITIAL_QUESTIONS, 1, 10).map((q) => q.id)
+    filterQuestionsByRange(
+      mode === 'most-likely-to' ? MOST_LIKELY_TO_QUESTIONS : INITIAL_QUESTIONS,
+      1,
+      10
+    ).map((q) => q.id)
   );
   const [currentIndex, setCurrentIndex] = useState<number>(0);
 
@@ -37,6 +50,19 @@ export function useGameDeck(customCards: QuestionCard[], isModalOpen = false) {
   useEffect(() => {
     setDeckOrder((prev) => createNonRepeatingOrder(prev));
   }, []);
+
+  // Reset and reshuffle deck when game mode changes
+  const prevModeRef = useRef<GameMode>(mode);
+  useEffect(() => {
+    if (prevModeRef.current !== mode) {
+      prevModeRef.current = mode;
+      const nextPool = filterQuestionsByRange(baseQuestions, intensityRange.min, intensityRange.max);
+      setDeckOrder(createNonRepeatingOrder(nextPool.map((q) => q.id)));
+      setCurrentIndex(0);
+      setDirection('idle');
+      setStagedCard(null);
+    }
+  }, [mode, baseQuestions, intensityRange.min, intensityRange.max]);
 
   // Clear stagedCard once customCards prop includes it so later deletions work cleanly
   useEffect(() => {
@@ -52,8 +78,8 @@ export function useGameDeck(customCards: QuestionCard[], isModalOpen = false) {
       stagedCard && stagedCard.isCustom && !customIds.has(stagedCard.id)
         ? [stagedCard, ...customCards]
         : customCards;
-    return [...mergedCustom, ...INITIAL_QUESTIONS];
-  }, [customCards, stagedCard]);
+    return [...mergedCustom, ...baseQuestions];
+  }, [customCards, stagedCard, baseQuestions]);
 
   const cardById = useMemo(() => {
     const map = new Map<string, QuestionCard>();

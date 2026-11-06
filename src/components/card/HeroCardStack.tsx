@@ -1,7 +1,7 @@
 'use client';
 
-import React, { useRef, useState } from 'react';
-import type { QuestionCard, TierThemeTokens } from '@/types/game';
+import React, { useRef, useState, useEffect } from 'react';
+import type { GameMode, QuestionCard, TierThemeTokens } from '@/types/game';
 import {
   ArrowLeftIcon,
   ArrowRightIcon,
@@ -16,6 +16,7 @@ export interface HeroCardStackProps {
   totalCards: number;
   theme: TierThemeTokens;
   direction: 'next' | 'prev' | 'idle';
+  gameMode?: GameMode;
   onNext: () => void;
   onPrev: () => void;
   onOpenCustomModal?: () => void;
@@ -29,6 +30,7 @@ export function HeroCardStack({
   totalCards,
   theme,
   direction,
+  gameMode = 'never-have-i-ever',
   onNext,
   onPrev,
   onOpenCustomModal,
@@ -36,6 +38,71 @@ export function HeroCardStack({
   const [dragX, setDragX] = useState(0);
   const [isDragging, setIsDragging] = useState(false);
   const pointerStartRef = useRef<{ id: number; startX: number } | null>(null);
+
+  // 3-2-1 Countdown state for 'most-likely-to' mode
+  const [countdown, setCountdown] = useState<number | 'POINT!' | null>(null);
+  const countdownTimerRef = useRef<NodeJS.Timeout | null>(null);
+
+  // Clean up timers on unmount or card / mode transition
+  useEffect(() => {
+    if (countdownTimerRef.current) {
+      clearTimeout(countdownTimerRef.current);
+      countdownTimerRef.current = null;
+    }
+    setCountdown(null);
+  }, [card?.id, gameMode]);
+
+  useEffect(() => {
+    return () => {
+      if (countdownTimerRef.current) {
+        clearTimeout(countdownTimerRef.current);
+      }
+    };
+  }, []);
+
+  const triggerVibration = (pattern: number | number[]) => {
+    if (typeof window !== 'undefined' && 'navigator' in window && navigator.vibrate) {
+      try {
+        navigator.vibrate(pattern);
+      } catch {
+        // Ignore devices where vibrate API is restricted
+      }
+    }
+  };
+
+  const startCountdown = () => {
+    if (countdownTimerRef.current) {
+      clearTimeout(countdownTimerRef.current);
+    }
+
+    // Step 1: 3
+    setCountdown(3);
+    triggerVibration(50);
+
+    // Step 2: 2
+    countdownTimerRef.current = setTimeout(() => {
+      setCountdown(2);
+      triggerVibration(50);
+
+      // Step 3: 1
+      countdownTimerRef.current = setTimeout(() => {
+        setCountdown(1);
+        triggerVibration(50);
+
+        // Step 4: POINT!
+        countdownTimerRef.current = setTimeout(() => {
+          setCountdown('POINT!');
+          triggerVibration([50, 50, 100]);
+
+          // Step 5: Reset after 3 seconds
+          countdownTimerRef.current = setTimeout(() => {
+            setCountdown(null);
+            countdownTimerRef.current = null;
+          }, 3000);
+        }, 1000);
+      }, 1000);
+    }, 1000);
+  };
 
   const handlePointerDown = (e: React.PointerEvent<HTMLElement>) => {
     if ((e.target as HTMLElement).closest('button')) {
@@ -175,14 +242,71 @@ export function HeroCardStack({
                   aria-hidden="true"
                   className={`w-2.5 h-2.5 rounded-full border-[1.5px] border-on-surface ${theme.accentBg}`}
                 />
-                <span className="font-mono text-label-code uppercase tracking-[0.18em] font-bold text-primary">
-                  NEVER HAVE I EVER...
+                <span className="font-mono text-label-code uppercase tracking-[0.16em] sm:tracking-[0.18em] font-bold text-primary">
+                  {gameMode === 'most-likely-to'
+                    ? 'MOST LIKELY TO...'
+                    : 'NEVER HAVE I EVER...'}
                 </span>
               </div>
 
               <h1 className="text-[clamp(1.5rem,3.4vw+0.5rem,2.5rem)] leading-[1.2] tracking-[-0.02em] font-display font-bold text-on-surface break-words">
                 {card.text}
               </h1>
+
+              {/* Kinetic 3-2-1 Countdown Trigger for Most Likely To mode */}
+              {gameMode === 'most-likely-to' && (
+                <div className="pt-2 sm:pt-4">
+                  {countdown === null ? (
+                    <button
+                      type="button"
+                      onClick={startCountdown}
+                      aria-label="Start 3-2-1 Point countdown"
+                      className="w-full min-h-[76px] sm:min-h-[88px] py-3.5 sm:py-4 px-5 rounded-control bg-secondary-container hover:bg-secondary-fixed text-on-surface border-[3px] border-on-surface shadow-brutal hover:shadow-brutal-hover active:translate-x-0.5 active:translate-y-0.5 brutal-interactive flex flex-col items-center justify-center gap-1.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-on-surface transition-all"
+                    >
+                      <div className="flex items-center gap-2">
+                        <span className="w-2 h-2 rounded-full bg-primary animate-ping" />
+                        <span className="font-mono text-[10px] sm:text-label-code uppercase tracking-[0.2em] font-bold text-on-surface/75">
+                          TABLE COUNTDOWN
+                        </span>
+                      </div>
+                      <div className="flex items-center gap-2 font-display font-black text-lg sm:text-xl tracking-tight text-on-surface">
+                        <span className="text-xl sm:text-2xl">🎯</span>
+                        <span>3... 2... 1... POINT!</span>
+                      </div>
+                      <span className="font-sans text-[11px] sm:text-xs text-on-surface-variant font-medium">
+                        Tap when the barkada is ready to point fingers
+                      </span>
+                    </button>
+                  ) : countdown === 'POINT!' ? (
+                    <div
+                      aria-live="assertive"
+                      className="w-full min-h-[76px] sm:min-h-[88px] py-3.5 sm:py-4 px-5 rounded-control bg-primary text-on-primary border-[3px] border-on-surface shadow-brutal flex flex-col items-center justify-center gap-1 animate-bounce"
+                    >
+                      <span className="font-mono text-[10px] sm:text-xs uppercase tracking-[0.2em] font-bold text-on-primary/90">
+                        TIME IS UP!
+                      </span>
+                      <span className="font-display font-black text-xl sm:text-2xl uppercase tracking-wider">
+                        👉 POINT NOW! 👈
+                      </span>
+                      <span className="font-sans text-[11px] sm:text-xs text-on-primary/90">
+                        Most fingers pointed takes a drink!
+                      </span>
+                    </div>
+                  ) : (
+                    <div
+                      aria-live="assertive"
+                      className={`w-full min-h-[76px] sm:min-h-[88px] py-3.5 sm:py-4 px-5 rounded-control ${theme.accentBg} ${theme.accentText} border-[3px] border-on-surface shadow-brutal flex items-center justify-center gap-4 animate-pulse`}
+                    >
+                      <span className="font-mono text-xs sm:text-sm uppercase tracking-widest font-bold">
+                        GET READY...
+                      </span>
+                      <span className="text-4xl sm:text-5xl font-mono font-black border-2 border-on-surface bg-surface px-4 py-1 rounded-token shadow-brutal-sm text-on-surface">
+                        {countdown}
+                      </span>
+                    </div>
+                  )}
+                </div>
+              )}
             </div>
 
             {/* Footer Action Controls */}
