@@ -236,14 +236,14 @@ export default function HomePage() {
                         <span className="font-display font-bold text-xs sm:text-sm text-on-surface truncate">
                           Most Likely To...
                         </span>
-                        <FlameIcon className="w-3.5 h-3.5 text-primary shrink-0" />
+                        <Target className="w-3.5 h-3.5 text-tertiary shrink-0" />
                       </div>
                       <span className="font-mono text-[10px] text-tertiary font-bold block">
                         ● 100 Cards Active
                       </span>
                     </div>
                     {gameMode === 'most-likely-to' && (
-                      <span className="px-1.5 py-0.5 rounded-full bg-primary-container border border-on-surface font-mono text-[9px] font-bold text-on-surface uppercase shrink-0">
+                      <span className="px-1.5 py-0.5 rounded-full bg-tertiary-fixed border border-on-surface font-mono text-[9px] font-bold text-on-surface uppercase shrink-0">
                         Active
                       </span>
                     )}
@@ -333,7 +333,7 @@ export default function HomePage() {
                 onClick={() => setGameMode('most-likely-to')}
                 className={`min-h-[44px] py-2 px-3 rounded-token font-mono text-xs sm:text-sm font-bold uppercase transition-all duration-100 flex items-center justify-center gap-1.5 cursor-pointer brutal-interactive focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-on-surface ${
                   gameMode === 'most-likely-to'
-                    ? 'bg-primary-container text-on-surface border-2 border-on-surface shadow-brutal-sm -translate-y-[1px]'
+                    ? 'bg-tertiary-fixed text-on-surface border-2 border-on-surface shadow-brutal-sm -translate-y-[1px]'
                     : 'bg-transparent text-on-surface-variant hover:text-on-surface hover:bg-surface-container-low'
                 }`}
               >
@@ -387,7 +387,9 @@ export default function HomePage() {
                 </div>
 
                 <div className="space-y-1">
-                  <span className="font-mono text-[10px] sm:text-[11px] uppercase tracking-wider font-bold text-primary block">
+                  <span className={`font-mono text-[10px] sm:text-[11px] uppercase tracking-wider font-bold block ${
+                    gameMode === 'most-likely-to' ? 'text-tertiary' : 'text-primary'
+                  }`}>
                     {gameMode === 'most-likely-to' ? 'MOST LIKELY TO...' : 'NEVER HAVE I EVER...'}
                   </span>
                   <p className="font-display font-bold text-base sm:text-title md:text-headline-sm text-on-surface leading-snug">
@@ -548,7 +550,7 @@ export default function HomePage() {
                 </div>
                 <ol className="space-y-2.5 font-sans text-sm sm:text-body-md text-on-surface-variant">
                   <li className="flex items-start gap-2.5 p-3 rounded-control bg-surface border border-on-surface/20">
-                    <span className="font-mono font-bold text-xs px-2 py-0.5 rounded-full bg-primary-container border border-on-surface text-on-surface shrink-0">
+                    <span className="font-mono font-bold text-xs px-2 py-0.5 rounded-full bg-secondary-container border border-on-surface text-on-surface shrink-0">
                       01
                     </span>
                     <div>
@@ -557,7 +559,7 @@ export default function HomePage() {
                     </div>
                   </li>
                   <li className="flex items-start gap-2.5 p-3 rounded-control bg-surface border border-on-surface/20">
-                    <span className="font-mono font-bold text-xs px-2 py-0.5 rounded-full bg-primary-container border border-on-surface text-on-surface shrink-0">
+                    <span className="font-mono font-bold text-xs px-2 py-0.5 rounded-full bg-secondary-container border border-on-surface text-on-surface shrink-0">
                       02
                     </span>
                     <div>
@@ -566,7 +568,7 @@ export default function HomePage() {
                     </div>
                   </li>
                   <li className="flex items-start gap-2.5 p-3 rounded-control bg-surface border border-on-surface/20">
-                    <span className="font-mono font-bold text-xs px-2 py-0.5 rounded-full bg-primary-container border border-on-surface text-on-surface shrink-0">
+                    <span className="font-mono font-bold text-xs px-2 py-0.5 rounded-full bg-secondary-container border border-on-surface text-on-surface shrink-0">
                       03
                     </span>
                     <div>
@@ -575,7 +577,7 @@ export default function HomePage() {
                     </div>
                   </li>
                   <li className="flex items-start gap-2.5 p-3 rounded-control bg-surface border border-on-surface/20">
-                    <span className="font-mono font-bold text-xs px-2 py-0.5 rounded-full bg-primary-container border border-on-surface text-on-surface shrink-0">
+                    <span className="font-mono font-bold text-xs px-2 py-0.5 rounded-full bg-secondary-container border border-on-surface text-on-surface shrink-0">
                       04
                     </span>
                     <div>
@@ -589,7 +591,7 @@ export default function HomePage() {
               {/* Mode B: Most Likely To */}
               <div className="space-y-3 pt-3 border-t border-on-surface/10">
                 <div className="flex items-center gap-2">
-                  <span className="px-2 py-0.5 rounded-full bg-primary-container border border-on-surface font-mono text-[11px] font-bold text-on-surface uppercase">
+                  <span className="px-2 py-0.5 rounded-full bg-tertiary-fixed border border-on-surface font-mono text-[11px] font-bold text-on-surface uppercase">
                     Mode 2
                   </span>
                   <h3 className="font-display font-bold text-sm sm:text-base text-on-surface">
@@ -598,7 +600,7 @@ export default function HomePage() {
                 </div>
                 <ol className="space-y-2.5 font-sans text-sm sm:text-body-md text-on-surface-variant">
                   <li className="flex items-start gap-2.5 p-3 rounded-control bg-surface border border-on-surface/20">
-                    <span className="font-mono font-bold text-xs px-2 py-0.5 rounded-full bg-primary-container border border-on-surface text-on-surface shrink-0">
+                    <span className="font-mono font-bold text-xs px-2 py-0.5 rounded-full bg-tertiary-fixed border border-on-surface text-on-surface shrink-0">
                       01
                     </span>
                     <div>
@@ -607,7 +609,7 @@ export default function HomePage() {
                     </div>
                   </li>
                   <li className="flex items-start gap-2.5 p-3 rounded-control bg-surface border border-on-surface/20">
-                    <span className="font-mono font-bold text-xs px-2 py-0.5 rounded-full bg-primary-container border border-on-surface text-on-surface shrink-0">
+                    <span className="font-mono font-bold text-xs px-2 py-0.5 rounded-full bg-tertiary-fixed border border-on-surface text-on-surface shrink-0">
                       02
                     </span>
                     <div>
@@ -616,7 +618,7 @@ export default function HomePage() {
                     </div>
                   </li>
                   <li className="flex items-start gap-2.5 p-3 rounded-control bg-surface border border-on-surface/20">
-                    <span className="font-mono font-bold text-xs px-2 py-0.5 rounded-full bg-primary-container border border-on-surface text-on-surface shrink-0">
+                    <span className="font-mono font-bold text-xs px-2 py-0.5 rounded-full bg-tertiary-fixed border border-on-surface text-on-surface shrink-0">
                       03
                     </span>
                     <div>
@@ -625,7 +627,7 @@ export default function HomePage() {
                     </div>
                   </li>
                   <li className="flex items-start gap-2.5 p-3 rounded-control bg-surface border border-on-surface/20">
-                    <span className="font-mono font-bold text-xs px-2 py-0.5 rounded-full bg-primary-container border border-on-surface text-on-surface shrink-0">
+                    <span className="font-mono font-bold text-xs px-2 py-0.5 rounded-full bg-tertiary-fixed border border-on-surface text-on-surface shrink-0">
                       04
                     </span>
                     <div>
@@ -634,7 +636,7 @@ export default function HomePage() {
                     </div>
                   </li>
                   <li className="flex items-start gap-2.5 p-3 rounded-control bg-surface border border-on-surface/20">
-                    <span className="font-mono font-bold text-xs px-2 py-0.5 rounded-full bg-primary-container border border-on-surface text-on-surface shrink-0">
+                    <span className="font-mono font-bold text-xs px-2 py-0.5 rounded-full bg-tertiary-fixed border border-on-surface text-on-surface shrink-0">
                       05
                     </span>
                     <div>
