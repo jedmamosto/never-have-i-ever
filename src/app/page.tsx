@@ -23,6 +23,7 @@ import {
   ShareIcon,
   SpicyFlameIcon,
 } from '@/components/card/Icons';
+import { Dices, Droplets, Hand, Scale, Target, Users, Zap } from 'lucide-react';
 import type { GameMode, QuestionCard } from '@/types/game';
 import {
   trackGameStart,
@@ -320,7 +321,8 @@ export default function HomePage() {
                     : 'bg-transparent text-on-surface-variant hover:text-on-surface hover:bg-surface-container-low'
                 }`}
               >
-                <span>🍺 Never Have I Ever</span>
+                <BeerIcon className="w-4 h-4 shrink-0" />
+                <span>Never Have I Ever</span>
                 <span className="font-mono text-[11px] opacity-80 hidden sm:inline">(500 Cards)</span>
               </button>
 
@@ -335,7 +337,8 @@ export default function HomePage() {
                     : 'bg-transparent text-on-surface-variant hover:text-on-surface hover:bg-surface-container-low'
                 }`}
               >
-                <span>👉 Most Likely To</span>
+                <Target className="w-4 h-4 shrink-0" />
+                <span>Most Likely To</span>
                 <span className="font-mono text-[11px] opacity-80 hidden sm:inline">(100 Cards)</span>
               </button>
             </div>
@@ -376,10 +379,10 @@ export default function HomePage() {
                     type="button"
                     onClick={nextCard}
                     aria-label="Show another sample card"
-                    className="min-h-[36px] px-2.5 py-1 rounded-full bg-surface-container-high hover:bg-surface-container-highest text-on-surface border border-on-surface font-mono text-[11px] font-bold inline-flex items-center gap-1 brutal-interactive focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-on-surface"
+                    className="min-h-[36px] px-2.5 py-1 rounded-full bg-surface-container-high hover:bg-surface-container-highest text-on-surface border border-on-surface font-mono text-[11px] font-bold inline-flex items-center gap-1.5 brutal-interactive focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-on-surface"
                   >
                     <span>Sample Another</span>
-                    <span aria-hidden="true">🎲</span>
+                    <Dices className="w-3.5 h-3.5 shrink-0" aria-hidden="true" />
                   </button>
                 </div>
 
@@ -445,7 +448,7 @@ export default function HomePage() {
                   {copiedLink ? (
                     <>
                       <CheckIcon className="w-3.5 h-3.5 text-on-surface shrink-0" />
-                      <span>Link Copied! 🍻</span>
+                      <span>Link Copied!</span>
                     </>
                   ) : (
                     <>
@@ -750,43 +753,43 @@ export default function HomePage() {
               </p>
               <ul className="space-y-2.5 font-sans text-sm sm:text-body-md text-on-surface-variant">
                 <li className="flex items-start gap-2">
-                  <span className="font-mono text-primary font-bold">🍺</span>
+                  <BeerIcon className="w-4 h-4 text-primary shrink-0 mt-1" />
                   <div>
                     <strong className="text-on-surface">The Solo Drinker Tax (NHIE):</strong> Only one person drank? They must spill the backstory to the table.
                   </div>
                 </li>
                 <li className="flex items-start gap-2">
-                  <span className="font-mono text-primary font-bold">🍻</span>
+                  <PartyGlassIcon className="w-4 h-4 text-primary shrink-0 mt-1" />
                   <div>
                     <strong className="text-on-surface">The Dry Question Penalty:</strong> Nobody drank or voted? The reader takes a penalty sip.
                   </div>
                 </li>
                 <li className="flex items-start gap-2">
-                  <span className="font-mono text-primary font-bold">🥂</span>
+                  <PartyGlassIcon className="w-4 h-4 text-primary shrink-0 mt-1" />
                   <div>
                     <strong className="text-on-surface">The Duel Clink (MLT):</strong> Tied vote count? Both players clink glasses and take a tagay together.
                   </div>
                 </li>
                 <li className="flex items-start gap-2">
-                  <span className="font-mono text-primary font-bold">🎯</span>
+                  <Target className="w-4 h-4 text-primary shrink-0 mt-1" />
                   <div>
                     <strong className="text-on-surface">The Firing Squad (MLT):</strong> Unanimous 100% vote? That player must take a double shot!
                   </div>
                 </li>
                 <li className="flex items-start gap-2">
-                  <span className="font-mono text-primary font-bold">⚖️</span>
+                  <Scale className="w-4 h-4 text-primary shrink-0 mt-1" />
                   <div>
                     <strong className="text-on-surface">The 10-Second Right of Defense (MLT):</strong> Accused players get 10 seconds to plead innocence. Convince the table to transfer the tagay!
                   </div>
                 </li>
                 <li className="flex items-start gap-2">
-                  <span className="font-mono text-primary font-bold">🥤</span>
+                  <Hand className="w-4 h-4 text-primary shrink-0 mt-1" />
                   <div>
                     <strong className="text-on-surface">The 10-Finger Rule (No Booze):</strong> Playing sober? Put up 10 fingers. Drop one finger per guilty card. Last standing wins.
                   </div>
                 </li>
                 <li className="flex items-start gap-2">
-                  <span className="font-mono text-primary font-bold">💧</span>
+                  <Droplets className="w-4 h-4 text-primary shrink-0 mt-1" />
                   <div>
                     <strong className="text-on-surface">Drink Responsibly:</strong> Pace your drinks. Eat your pulutan, drink plenty of water, and never drink and drive.
                   </div>
@@ -917,14 +920,17 @@ export default function HomePage() {
               </div>
 
               <div className="flex items-center justify-center gap-2 sm:gap-3 flex-wrap font-mono text-[11px] text-on-surface-variant font-medium">
-                <span className="px-2 py-0.5 rounded-full bg-surface-container border border-on-surface/30">
-                  ⚡ Instant Play
+                <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-surface-container border border-on-surface/30">
+                  <Zap className="w-3 h-3 text-on-surface shrink-0" aria-hidden="true" />
+                  <span>Instant Play</span>
                 </span>
-                <span className="px-2 py-0.5 rounded-full bg-surface-container border border-on-surface/30">
-                  🍺 100% Free
+                <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-surface-container border border-on-surface/30">
+                  <BeerIcon className="w-3 h-3 text-on-surface shrink-0" />
+                  <span>100% Free</span>
                 </span>
-                <span className="px-2 py-0.5 rounded-full bg-surface-container border border-on-surface/30">
-                  👥 2–20+ Players
+                <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-surface-container border border-on-surface/30">
+                  <Users className="w-3 h-3 text-on-surface shrink-0" aria-hidden="true" />
+                  <span>2–20+ Players</span>
                 </span>
               </div>
 
@@ -977,9 +983,10 @@ export default function HomePage() {
                   setIsGcashModalOpen(true);
                   trackGcashModalOpen('footer');
                 }}
-                className="inline-flex items-center justify-center min-h-[44px] hover:text-primary transition-colors underline-offset-4 hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-on-surface rounded-token px-2 py-1"
+                className="inline-flex items-center justify-center min-h-[44px] gap-1 hover:text-primary transition-colors underline-offset-4 hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-on-surface rounded-token px-2 py-1"
               >
-                Libreng Tagay 🍻
+                <span>Libreng Tagay</span>
+                <BeerIcon className="w-3.5 h-3.5 shrink-0" />
               </button>
             </div>
             <p className="font-mono text-[11px] text-on-surface-variant/60">

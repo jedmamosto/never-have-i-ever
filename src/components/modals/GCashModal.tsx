@@ -128,7 +128,7 @@ export function GCashModal({ isOpen, onClose }: GCashModalProps) {
                 id={titleId}
                 className="font-display font-bold text-headline-sm text-on-surface tracking-[-0.02em]"
               >
-                Libreng Tagay 🍻
+                Libreng Tagay
               </h2>
             </div>
           </div>
@@ -259,7 +259,9 @@ export function GCashModal({ isOpen, onClose }: GCashModalProps) {
               rel="noopener noreferrer"
               className="inline-flex items-center gap-1.5 font-mono text-xs text-on-surface-variant hover:text-primary transition-colors underline-offset-4 hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-on-surface rounded-token px-1"
             >
-              <span>Crafted with 🍻 by Jed Mamosto</span>
+              <span className="inline-flex items-center gap-1">
+                Crafted with <BeerIcon className="w-3.5 h-3.5 text-primary shrink-0" /> by Jed Mamosto
+              </span>
               <span className="text-primary font-bold">• jedmamosto.me</span>
               <ExternalLinkIcon className="w-3.5 h-3.5 shrink-0" />
             </a>

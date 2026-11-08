@@ -9,6 +9,7 @@ import {
   PlusIcon,
   TierIcon,
 } from '@/components/card/Icons';
+import { Target } from 'lucide-react';
 
 export interface HeroCardStackProps {
   card: QuestionCard | null;
@@ -270,7 +271,7 @@ export function HeroCardStack({
                         </span>
                       </div>
                       <div className="flex items-center gap-2 font-display font-black text-lg sm:text-xl tracking-tight text-on-surface">
-                        <span className="text-xl sm:text-2xl">🎯</span>
+                        <Target className="w-5 h-5 sm:w-6 sm:h-6 shrink-0" aria-hidden="true" />
                         <span>3... 2... 1... POINT!</span>
                       </div>
                       <span className="font-sans text-[11px] sm:text-xs text-on-surface-variant font-medium">
@@ -285,8 +286,10 @@ export function HeroCardStack({
                       <span className="font-mono text-[10px] sm:text-xs uppercase tracking-[0.2em] font-bold text-on-primary/90">
                         TIME IS UP!
                       </span>
-                      <span className="font-display font-black text-xl sm:text-2xl uppercase tracking-wider">
-                        👉 POINT NOW! 👈
+                      <span className="font-display font-black text-xl sm:text-2xl uppercase tracking-wider flex items-center justify-center gap-2">
+                        <ArrowRightIcon className="w-5 h-5 sm:w-6 sm:h-6 shrink-0" />
+                        <span>POINT NOW!</span>
+                        <ArrowLeftIcon className="w-5 h-5 sm:w-6 sm:h-6 shrink-0" />
                       </span>
                       <span className="font-sans text-[11px] sm:text-xs text-on-primary/90">
                         Most fingers pointed takes a drink!

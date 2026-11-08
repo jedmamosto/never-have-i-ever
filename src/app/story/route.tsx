@@ -171,16 +171,31 @@ export async function GET() {
                 alignItems: "center",
               }}
             >
-              <span
+              <div
                 style={{
+                  display: "flex",
+                  alignItems: "center",
+                  gap: "6px",
                   fontSize: "17px",
                   fontWeight: 900,
                   color: "#7c5800",
                   letterSpacing: "0.06em",
                 }}
               >
-                ⚡ 10 INTENSITY LEVELS — ZERO BORING ICEBREAKERS
-              </span>
+                <svg
+                  viewBox="0 0 24 24"
+                  width="18"
+                  height="18"
+                  fill="none"
+                  stroke="#7c5800"
+                  strokeWidth="2.5"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                >
+                  <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" />
+                </svg>
+                <span>10 INTENSITY LEVELS — ZERO BORING ICEBREAKERS</span>
+              </div>
               <span
                 style={{
                   fontSize: "15px",
@@ -286,12 +301,27 @@ export async function GET() {
                 </div>
                 <div
                   style={{
+                    display: "flex",
+                    alignItems: "center",
+                    gap: "6px",
                     fontSize: "17px",
                     fontWeight: 800,
                     color: "#7c5800",
                   }}
                 >
-                  🌶️ SPICY BARKADA LORE
+                  <svg
+                    viewBox="0 0 24 24"
+                    width="18"
+                    height="18"
+                    fill="none"
+                    stroke="#7c5800"
+                    strokeWidth="2.5"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  >
+                    <path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z" />
+                  </svg>
+                  <span>SPICY BARKADA LORE</span>
                 </div>
               </div>
 
@@ -332,13 +362,28 @@ export async function GET() {
                 style={{
                   display: "flex",
                   alignItems: "center",
-                  gap: "10px",
+                  gap: "8px",
                   fontSize: "20px",
                   fontWeight: 800,
                   color: "#9a442d",
                 }}
               >
-                <span>🍺 KUNG NAGAWA MO NA:</span>
+                <svg
+                  viewBox="0 0 24 24"
+                  width="20"
+                  height="20"
+                  fill="none"
+                  stroke="#9a442d"
+                  strokeWidth="2.5"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                >
+                  <path d="M17 11h2a2 2 0 0 1 2 2v2a2 2 0 0 1-2 2h-2" />
+                  <path d="M5 21V7a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v14a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1Z" />
+                  <path d="M9 10v7" />
+                  <path d="M13 10v7" />
+                </svg>
+                <span>KUNG NAGAWA MO NA:</span>
                 <span
                   style={{
                     backgroundColor: "#ffdbd2",
@@ -385,17 +430,60 @@ export async function GET() {
           >
             {[
               {
-                icon: "🍻",
+                icon: (
+                  <svg
+                    viewBox="0 0 24 24"
+                    width="20"
+                    height="20"
+                    fill="none"
+                    stroke="#1c1c19"
+                    strokeWidth="2.5"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  >
+                    <path d="M17 11h2a2 2 0 0 1 2 2v2a2 2 0 0 1-2 2h-2" />
+                    <path d="M5 21V7a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v14a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1Z" />
+                    <path d="M9 10v7" />
+                    <path d="M13 10v7" />
+                  </svg>
+                ),
                 title: "100% Inuman Ready",
                 desc: "Pass-and-play phone friendly",
               },
               {
-                icon: "⚡",
+                icon: (
+                  <svg
+                    viewBox="0 0 24 24"
+                    width="20"
+                    height="20"
+                    fill="none"
+                    stroke="#1c1c19"
+                    strokeWidth="2.5"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  >
+                    <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" />
+                  </svg>
+                ),
                 title: "No App Install",
                 desc: "Runs instant in any browser",
               },
               {
-                icon: "🔒",
+                icon: (
+                  <svg
+                    viewBox="0 0 24 24"
+                    width="20"
+                    height="20"
+                    fill="none"
+                    stroke="#1c1c19"
+                    strokeWidth="2.5"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  >
+                    <rect width="18" height="11" x="3" y="11" rx="2" ry="2" />
+                    <path d="M7 11V7a5 5 0 0 1 10 0v4" />
+                  </svg>
+                ),
                 title: "Zero Sign-up",
                 desc: "100% free, walang login",
               },
@@ -421,7 +509,7 @@ export async function GET() {
                     gap: "8px",
                   }}
                 >
-                  <span style={{ fontSize: "20px" }}>{feat.icon}</span>
+                  {feat.icon}
                   <span
                     style={{
                       fontSize: "17px",
@@ -462,13 +550,42 @@ export async function GET() {
           >
             <div
               style={{
+                display: "flex",
+                alignItems: "center",
+                gap: "10px",
                 fontSize: "18px",
                 fontWeight: 900,
                 color: "#715000",
                 letterSpacing: "0.08em",
               }}
             >
-              👉 MAGLARO KASAMA ANG BARKADA NGAYON 👈
+              <svg
+                viewBox="0 0 24 24"
+                width="20"
+                height="20"
+                fill="none"
+                stroke="#715000"
+                strokeWidth="3"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              >
+                <path d="M5 12h14" />
+                <path d="m12 5 7 7-7 7" />
+              </svg>
+              <span>MAGLARO KASAMA ANG BARKADA NGAYON</span>
+              <svg
+                viewBox="0 0 24 24"
+                width="20"
+                height="20"
+                fill="none"
+                stroke="#715000"
+                strokeWidth="3"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              >
+                <path d="M19 12H5" />
+                <path d="m12 19-7-7 7-7" />
+              </svg>
             </div>
 
             <div

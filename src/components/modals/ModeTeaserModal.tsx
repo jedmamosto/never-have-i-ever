@@ -127,7 +127,7 @@ export function ModeTeaserModal({
                 id={titleId}
                 className="font-display font-bold text-headline-sm text-on-surface tracking-[-0.02em]"
               >
-                Most Likely To... 🎯
+                Most Likely To...
               </h2>
             </div>
           </div>
@@ -240,7 +240,7 @@ export function ModeTeaserModal({
                   className="w-full py-3 px-4 rounded-control bg-primary-container text-on-surface border-[2.5px] border-on-surface font-display font-bold text-title flex items-center justify-center gap-2 brutal-interactive shadow-brutal focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-on-surface"
                 >
                   <FlameIcon className="w-5 h-5 shrink-0" />
-                  <span>Vote to Hype &quot;Most Likely To&quot; 🔥</span>
+                  <span>Vote to Hype &quot;Most Likely To&quot;</span>
                 </button>
               </div>
             )}

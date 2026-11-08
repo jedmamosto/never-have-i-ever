@@ -155,12 +155,27 @@ export default async function Image() {
                 </div>
                 <div
                   style={{
+                    display: "flex",
+                    alignItems: "center",
+                    gap: "6px",
                     fontSize: "14px",
                     fontWeight: 700,
                     color: "#7c5800",
                   }}
                 >
-                  🌶️ SPICY BARKADA LORE
+                  <svg
+                    viewBox="0 0 24 24"
+                    width="16"
+                    height="16"
+                    fill="none"
+                    stroke="#7c5800"
+                    strokeWidth="2.5"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  >
+                    <path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z" />
+                  </svg>
+                  <span>SPICY BARKADA LORE</span>
                 </div>
               </div>
               <div
@@ -216,6 +231,9 @@ export default async function Image() {
             >
               <div
                 style={{
+                  display: "flex",
+                  alignItems: "center",
+                  gap: "6px",
                   backgroundColor: "#f0ede9",
                   border: "2px solid #1c1c19",
                   borderRadius: "8px",
@@ -225,10 +243,28 @@ export default async function Image() {
                   color: "#1c1c19",
                 }}
               >
-                🍻 Inuman Ready
+                <svg
+                  viewBox="0 0 24 24"
+                  width="16"
+                  height="16"
+                  fill="none"
+                  stroke="#1c1c19"
+                  strokeWidth="2.5"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                >
+                  <path d="M17 11h2a2 2 0 0 1 2 2v2a2 2 0 0 1-2 2h-2" />
+                  <path d="M5 21V7a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v14a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1Z" />
+                  <path d="M9 10v7" />
+                  <path d="M13 10v7" />
+                </svg>
+                <span>Inuman Ready</span>
               </div>
               <div
                 style={{
+                  display: "flex",
+                  alignItems: "center",
+                  gap: "6px",
                   backgroundColor: "#f0ede9",
                   border: "2px solid #1c1c19",
                   borderRadius: "8px",
@@ -238,10 +274,25 @@ export default async function Image() {
                   color: "#1c1c19",
                 }}
               >
-                🌶️ 10 Intensity Levels
+                <svg
+                  viewBox="0 0 24 24"
+                  width="16"
+                  height="16"
+                  fill="none"
+                  stroke="#1c1c19"
+                  strokeWidth="2.5"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                >
+                  <path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z" />
+                </svg>
+                <span>10 Intensity Levels</span>
               </div>
               <div
                 style={{
+                  display: "flex",
+                  alignItems: "center",
+                  gap: "6px",
                   backgroundColor: "#f0ede9",
                   border: "2px solid #1c1c19",
                   borderRadius: "8px",
@@ -251,7 +302,20 @@ export default async function Image() {
                   color: "#1c1c19",
                 }}
               >
-                📱 Pass & Play
+                <svg
+                  viewBox="0 0 24 24"
+                  width="16"
+                  height="16"
+                  fill="none"
+                  stroke="#1c1c19"
+                  strokeWidth="2.5"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                >
+                  <rect width="14" height="20" x="5" y="2" rx="2" ry="2" />
+                  <path d="M12 18h.01" />
+                </svg>
+                <span>Pass & Play</span>
               </div>
             </div>
           </div>
