@@ -144,49 +144,49 @@ spacing:
 
 ## Brand & Style
 
-The design system embodies the tension between deep interpersonal vulnerability and raucous social energy—blending the stark conversational intimacy of *We're Not Really Strangers* with the irreverent, tactile, high-agency utility of Gumroad. The aesthetic identity is Warm Editorial Neo-Brutalism: tangible, print-inspired, physically grounded, yet bursting with conversational punch.
+The design system uses Warm Editorial Neo-Brutalism. It pairs tactile print cards with bold ink borders, inspired by *We're Not Really Strangers* and Gumroad.
 
 Key brand pillars:
-- **Paper-Crafted Physicality:** Everything feels like printed linen cardstock, archival prompt decks, punchboards, and tangible game tokens dropped onto a sunlit wooden table.
-- **Graphic Sharpness with Generous Softness:** Crisp, uniform ink-black structural strokes define every perimeter, balanced by intentionally rounded outer contours that soften aggressive brutalism into friendly, touchable modules.
-- **Unfiltered Emotional Resonance:** Color sets dictate the temperature of connection—transitioning seamlessly from gentle green conversational check-ins to deep-night, candid, spicy confessions.
+- **Paper-Crafted Physicality:** Surfaces look like printed linen cardstock, prompt decks, and game tokens on a wooden table.
+- **Sharp Borders with Soft Corners:** Uniform ink-black strokes frame every surface. Rounded outer corners keep the layout friendly and touchable.
+- **Color by Mood:** Colors match the prompt intensity, moving from calm green icebreakers to warm yellow party cards and deep red late-night prompts.
 
 ## Colors
 
-The system uses an intentional warm editorial palette where functional roles align with emotional registers and gameplay tempos:
+Each color role maps to an intensity tier and gameplay state:
 
-- **Canvas & Surface:** Oatmeal Cream (`#FBF8F3`) acts as the unifying warm ground, avoiding digital sterility. Secondary containers and card faces use pure Stark White (`#FFFFFF`) or subtle tone-shifted Oatmeal variants (`#F5EFEB`).
-- **Ink & Strokes:** Ink-Black (`#18181B`) anchors the design system across all typography, bounding strokes, and hardcast drop shadows.
-- **Primary (Late-Night Spicy):** Terracotta Coral (`#E07A5F`) serves as the dominant call-to-action tone, high-stakes prompt card background, and primary action anchor. Dusty Berry (`#D1495B`) provides dramatic urgency, countdown pressure, and deep-cut question badges.
-- **Secondary (Party & Lore):** Warm Marigold (`#F4B942`) provides joyful warmth for group prompts, player turn badges, and active state highlights. Muted Lavender (`#D4C1EC`) adds dreamy vulnerability and abstract reflection decks.
-- **Tertiary (Chill Reflection):** Matcha Sage (`#A3C9A8`) handles low-stress icebreakers, safe zones, calm phase transitions, and resolved completion states.
+- **Canvas & Surface:** Oatmeal Cream (`#FBF8F3`) is the main background. Secondary containers and card faces use Stark White (`#FFFFFF`) or `#F5EFEB`.
+- **Ink & Strokes:** Ink-Black (`#18181B`) sets the color for text, borders, and hard drop shadows.
+- **Primary (Late-Night Spicy):** Terracotta Coral (`#E07A5F`) marks primary buttons, high-intensity cards, and main CTAs. Dusty Berry (`#D1495B`) handles countdown states and deep-cut badges.
+- **Secondary (Party & Lore):** Warm Marigold (`#F4B942`) highlights group prompts, turn badges, and active tabs. Muted Lavender (`#D4C1EC`) styles reflection decks.
+- **Tertiary (Chill Reflection):** Matcha Sage (`#A3C9A8`) marks low-stress icebreakers, safe zones, and calm transitions.
 
 ## Typography
 
-Typographic structure relies on a triad pairing:
-1. **Space Grotesk** commands display titles, dramatic prompt card text, and scoring headliners with aggressive geometric posture and tight letter-tracking.
-2. **Plus Jakarta Sans** provides humanistic warmth, readability, and approachable clarity across prompts, descriptions, body rules, and dialogues.
-3. **Space Mono** injects brutalist mechanical rigor into functional ephemera—round counters, deck categories, card numbers (e.g., `LVL 03 // CARD 42`), timer readouts, and player slot trackers.
+The type system uses three fonts:
+1. **Space Grotesk** handles display titles, prompt card text, and headlines with tight letter-tracking.
+2. **Plus Jakarta Sans** handles descriptions, body rules, and modal copy for clear reading.
+3. **Space Mono** formats counters, deck categories, card numbers (e.g., `LVL 03 // CARD 42`), and timers.
 
-Headings on prompt cards should consistently maintain a tight line height and negative tracking to preserve the posterized, editorial feel. Never use italic styles for cards; emphasize via underline or bracket enclosures (`[CONFESS]`).
+Prompt card headings use tight line height and negative tracking for a poster feel. Do not use italic styles on cards; use underlines or brackets (`[CONFESS]`) instead.
 
 ## Layout & Spacing
 
-The interface operates on an adaptive 8pt modular grid structured around tactile card mechanics:
-- **Mobile (<640px):** Single-column stack layout anchored by bottom-affixed control bars. Screen margins stay tight at `1rem` to maximize prompt surface area. Card deck containers fit snugly with `1rem` gutters.
-- **Tablet (641px–1024px):** 6-column fluid canvas with `1.5rem` gutters. Allows dual-pane views: active prompt on the primary pane (4 cols), score/player roster on the secondary pane (2 cols).
-- **Desktop (>1024px):** 12-column layout centered with max-width `1200px` and `3rem` margins. Simulates an expansive card table with tactile floating sidebars, deck selectors, and discard piles.
+The layout uses an 8pt grid built around card play:
+- **Mobile (<640px):** Single-column layout with bottom-docked controls. Keep screen margins and card gutters at `1rem` so the prompt fills the screen.
+- **Tablet (641px–1024px):** 6-column fluid canvas with `1.5rem` gutters. Supports dual-pane views with the active prompt on 4 columns and controls on 2 columns.
+- **Desktop (>1024px):** 12-column layout centered at `1200px` max width with `3rem` margins. Leaves room for floating sidebars and deck selectors.
 
-All component internal spacing follows standard step increments: micro-gaps for counter labels (`space-xs`), button insets (`space-sm` vertically, `space-lg` horizontally), and generous internal card padding (`space-xl`).
+Component spacing uses fixed tokens: `space-xs` for counter gaps, `space-sm`/`space-lg` for button padding, and `space-xl` for card padding.
 
 ## Elevation & Depth
 
-Visual hierarchy uses authentic Neo-Brutalist hard offsets with absolute zero Gaussian blur:
-- **Ink Borders:** All elevated surfaces carry an explicit `2.5px` (controls/chips) or `3px` (cards/panels) solid perimeter colored in `#18181B`.
-- **Card Stacks & Major Modals:** Depth is established using a hard `8px 8px 0px 0px #18181B` offset shadow. Stacked deck states duplicate this with pseudo-elements to create a layered 3D fan effect (`4px` and `8px` staggered black rims).
-- **Interactive Controls (Buttons, Inputs, Toggles):** Default resting state features a crisp `4px 4px 0px 0px #18181B` offset shadow.
-- **Hover State:** Translates `-2px, -2px` while expanding the shadow to `6px 6px 0px 0px #18181B`.
-- **Active / Pressed State:** Physically collapses via `transform: translate(4px, 4px)` with shadow reduced to `0px 0px 0px 0px #18181B`, delivering immediate mechanical haptic feedback.
+Depth uses hard Neo-Brutalist offsets with zero blur:
+- **Ink Borders:** Elevated surfaces use a `2.5px` (controls/chips) or `3px` (cards/panels) solid `#18181B` border.
+- **Card Stacks & Major Modals:** Use an `8px 8px 0px 0px #18181B` offset shadow. Stacked deck cards duplicate this with `4px` and `8px` staggered black rims.
+- **Interactive Controls (Buttons, Inputs, Toggles):** Resting state uses a `4px 4px 0px 0px #18181B` shadow.
+- **Hover State:** Moves `-2px, -2px` and expands the shadow to `6px 6px 0px 0px #18181B`.
+- **Active / Pressed State:** Moves `4px, 4px` with a `0px` shadow for tactile press feedback.
 
 ## Shapes
 

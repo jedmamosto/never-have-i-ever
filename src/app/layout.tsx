@@ -37,7 +37,7 @@ export const metadata: Metadata = {
     template: "%s | Tagay Ta",
   },
   description:
-    "A Pinoy barkada party deck with 600 calibrated prompts across 10 intensity levels. Play Never Have I Ever and Most Likely To for epic inuman sessions.",
+    "A Pinoy barkada card game with 600 prompts across 10 levels. Play Never Have I Ever and Most Likely To with friends.",
   applicationName: "Tagay Ta",
   authors: [{ name: "Jed Mamosto", url: "https://jedmamosto.me" }],
   generator: "Next.js",
@@ -75,7 +75,7 @@ export const metadata: Metadata = {
     title:
       "Tagay Ta — Pinoy Barkada Party Deck & Drinking Game (Never Have I Ever & Most Likely To)",
     description:
-      "A Pinoy barkada party deck with 600 calibrated prompts across 10 intensity levels. Play Never Have I Ever and Most Likely To for epic inuman sessions.",
+      "A Pinoy barkada card game with 600 prompts across 10 levels. Play Never Have I Ever and Most Likely To with friends.",
     url: "https://tagay-ta.vercel.app",
     siteName: "Tagay Ta",
     locale: "en_PH",
@@ -86,7 +86,7 @@ export const metadata: Metadata = {
     title:
       "Tagay Ta — Pinoy Barkada Party Deck & Drinking Game (Never Have I Ever & Most Likely To)",
     description:
-      "A Pinoy barkada party deck with 600 calibrated prompts across 10 intensity levels. Play Never Have I Ever and Most Likely To for epic inuman sessions.",
+      "A Pinoy barkada card game with 600 prompts across 10 levels. Play Never Have I Ever and Most Likely To with friends.",
     creator: "@jedmamosto",
   },
   robots: {
@@ -122,7 +122,7 @@ const jsonLd = {
       operatingSystem: "All",
       browserRequirements: "Requires JavaScript. Requires HTML5.",
       description:
-        "A Pinoy barkada party deck with 600 calibrated prompts across 10 intensity levels. Play Never Have I Ever and Most Likely To for epic inuman sessions.",
+        "A Pinoy barkada card game with 600 prompts across 10 levels. Play Never Have I Ever and Most Likely To with friends.",
       genre: [
         "Party Game",
         "Drinking Game",
@@ -168,7 +168,7 @@ const jsonLd = {
         {
           "@type": "HowToStep",
           name: "Mode B: Most Likely To",
-          text: "Read the prompt. Count down 3-2-1 together. Point fingers simultaneously. Most votes drinks with 10s defense!",
+          text: "Read the prompt. Count down 3-2-1 together. Point fingers simultaneously. Most votes drinks, with 10 seconds to defend yourself.",
         },
       ],
     },

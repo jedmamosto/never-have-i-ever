@@ -123,7 +123,7 @@ export function CustomCardModal({
     e.preventDefault();
     const cleaned = stripNeverHaveIEverPrefix(promptText).trim();
     if (!cleaned) {
-      setValidationError("Enter a confession prompt before injecting.");
+      setValidationError("Type a prompt before adding it.");
       textareaRef.current?.focus();
       return;
     }
@@ -160,7 +160,7 @@ export function CustomCardModal({
         <header className="flex items-center justify-between gap-3 px-5 py-4 bg-surface-container-low border-b-[2.5px] border-on-surface">
           <div>
             <span className="font-mono text-label-code uppercase text-on-surface-variant block">
-              CUSTOM DECK FORGE // LOCAL STORAGE
+              CUSTOM CARDS // SAVED IN BROWSER
             </span>
             <h2
               id={titleId}
@@ -309,7 +309,7 @@ export function CustomCardModal({
                 <path d="M12 5v14" />
                 <path d="M5 12h14" />
               </svg>
-              <span>Inject Into Deck</span>
+              <span>Add to Deck</span>
             </button>
           </form>
 

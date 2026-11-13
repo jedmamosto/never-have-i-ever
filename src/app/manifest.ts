@@ -5,7 +5,7 @@ export default function manifest(): MetadataRoute.Manifest {
     name: 'Tagay Ta — Pinoy Barkada Party Deck & Drinking Game',
     short_name: 'Tagay Ta',
     description:
-      'The ultimate Pinoy barkada party deck. 500 calibrated Never Have I Ever prompts across 10 intensity levels for inuman sessions and chill hangouts.',
+      'A Pinoy barkada card game with 600 prompts across 10 levels for inuman nights and chill hangouts.',
     start_url: '/',
     display: 'standalone',
     background_color: '#fcf9f4',

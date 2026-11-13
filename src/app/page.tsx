@@ -111,7 +111,7 @@ export default function HomePage() {
   const handleShareGame = async () => {
     const shareData = {
       title: 'Tagay Ta — Pinoy Barkada Party Deck & Drinking Game',
-      text: 'Play Never Have I Ever and Most Likely To with 600 calibrated Pinoy prompts! Play now:',
+      text: 'Play Never Have I Ever and Most Likely To with 600 Pinoy barkada prompts! Play now:',
       url: typeof window !== 'undefined' ? window.location.href : 'https://tagay-ta.vercel.app',
     };
     if (typeof navigator !== 'undefined' && navigator.share) {
@@ -513,10 +513,10 @@ export default function HomePage() {
                 <strong>Tagay Ta</strong> means &quot;let&apos;s drink!&quot; in Visayan. It is built for real barkada inuman nights.
               </p>
               <p className="font-sans text-sm sm:text-body-md text-on-surface-variant leading-relaxed">
-                We packed two party games inside. Play <strong>Never Have I Ever</strong> (500 cards) and <strong>Most Likely To</strong> (100 cards). That gives your table 600 calibrated prompts total.
+                We packed two party games inside. Play <strong>Never Have I Ever</strong> (500 cards) and <strong>Most Likely To</strong> (100 cards). That gives your table 600 prompts total.
               </p>
               <p className="font-sans text-sm sm:text-body-md text-on-surface-variant leading-relaxed">
-                No boring cards. Expect real campus bloopers, ambag drama, workplace tea, and 2 AM dating truths.
+                Expect campus bloopers, ambag drama, workplace tea, and 2 AM dating truths.
               </p>
               <p className="font-sans text-sm sm:text-body-md text-on-surface-variant leading-relaxed">
                 No app download needed. Grab your pulutan, open your browser, and pass the phone around.
@@ -534,7 +534,7 @@ export default function HomePage() {
                   How to Play Tagay Ta
                 </h2>
                 <p className="font-sans text-sm sm:text-body-md text-on-surface-variant leading-relaxed mt-1">
-                  Tagay Ta features two Pinoy party games. Pick a mode and gather your circle:
+                  Tagay Ta has two Pinoy party games. Pick a mode and gather your circle:
                 </p>
               </div>
 
@@ -671,7 +671,7 @@ export default function HomePage() {
                       Icebreakers &amp; School Days
                     </strong>
                     <p className="font-sans text-xs text-on-surface-variant leading-relaxed">
-                      Campus bloopers, commute woes, and funny Pinoy habits. Safe for family or coworkers.
+                      Light campus stories and commute fails. Safe for family or coworkers.
                     </p>
                     <div className="p-2 rounded-token bg-surface-container-low border border-on-surface/20 font-mono text-[11px] text-on-surface-variant italic">
                       &ldquo;Nakatulog sa jeep at lumagpas ng babaan.&rdquo;
@@ -697,7 +697,7 @@ export default function HomePage() {
                       Office Tea &amp; Situationships
                     </strong>
                     <p className="font-sans text-xs text-on-surface-variant leading-relaxed">
-                      Workplace confessions, secret crushes, and inuman memories. Great for close barkadas.
+                      Office tea, secret crushes, and old inuman stories for close barkadas.
                     </p>
                     <div className="p-2 rounded-token bg-surface-container-low border border-on-surface/20 font-mono text-[11px] text-on-surface-variant italic">
                       &ldquo;Nag-mute sa meeting para uminom o kumain.&rdquo;
@@ -723,7 +723,7 @@ export default function HomePage() {
                       Walwal &amp; Wild Truths
                     </strong>
                     <p className="font-sans text-xs text-on-surface-variant leading-relaxed">
-                      Wild party nights, secret exes, and unfiltered confessions. Play only with trusted friends.
+                      Late-night party stories, exes, and bold confessions. Best played with trusted friends.
                     </p>
                     <div className="p-2 rounded-token bg-surface-container-low border border-on-surface/20 font-mono text-[11px] text-on-surface-variant italic">
                       &ldquo;Nag-drunk dial ng ex nang hatinggabi.&rdquo;
@@ -917,7 +917,7 @@ export default function HomePage() {
                   Ready to start the tagay?
                 </h2>
                 <p className="font-sans text-xs sm:text-sm text-on-surface-variant">
-                  One phone. Two game decks. 600 calibrated Pinoy prompts.
+                  One phone, two decks, and 600 Pinoy prompts.
                 </p>
               </div>
 
@@ -966,7 +966,7 @@ export default function HomePage() {
                 onClick={() => trackPortfolioClick('main_menu_footer')}
                 className="inline-flex items-center justify-center min-h-[44px] gap-1 hover:text-primary transition-colors underline-offset-4 hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-on-surface rounded-token px-2 py-1"
               >
-                <span>Crafted by Jed Mamosto</span>
+                <span>Built by Jed Mamosto</span>
                 <ExternalLinkIcon className="w-3.5 h-3.5 shrink-0" />
               </a>
               <span className="hidden sm:inline">•</span>
@@ -992,7 +992,7 @@ export default function HomePage() {
               </button>
             </div>
             <p className="font-mono text-[11px] text-on-surface-variant/60">
-              Tagay Ta © {new Date().getFullYear()} — Calibrated Filipino Barkada Conversation Deck
+              Tagay Ta © {new Date().getFullYear()} · Pinoy Barkada Party Deck
             </p>
           </footer>
         </main>

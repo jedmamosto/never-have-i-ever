@@ -79,7 +79,7 @@ export async function GET() {
                 color: "#3c0800",
               }}
             >
-              <span>500 CARDS · 10 LEVELS</span>
+              <span>600 CARDS · 10 LEVELS</span>
             </div>
           </div>
 
@@ -147,7 +147,7 @@ export async function GET() {
                 marginTop: "8px",
               }}
             >
-              The Ultimate Pinoy Inuman, Icebreaker & Party Deck
+              Pinoy Barkada Inuman &amp; Party Deck
             </div>
           </div>
 
